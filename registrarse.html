@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
+        integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w=="
+        crossorigin="anonymous" />
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+
+    <script src="js/jquery-3.5.1.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/animacion.js"></script>
+
+</head>
+
+<body>
+    <!-- fin header -->
+    <!-- inicio main -->
+    <div id="registrarse" class="container-fluid">
+
+        <div id="contenedor_global_reg" class="row px-3">
+            <div class="col-md-7 mx-auto">
+                <div id="contenedor_2" class=" shadow rounded overflow-hidden">
+                    <div class="px-3 pb-5 cover1">
+                        <div class=" pb-5 profile-head text-white">
+                            <h4 id="titulo_form" class="d-flex justify-content-center">Registrarse</h4>
+                            <form action="#" id="registrarse_form" method="GET">
+                                <div id="datos" class="mx-auto mb-5 ">
+
+                                    <div id="grupo__nombre" class="elemento_form">
+                                        <div class="texto_form">Nombre:</div>
+                                        <div class="input_form" id="">
+                                            <input class="inputs_form" type="text" name="nombre" id="nombre"
+                                                placeholder="Enrique">
+                                                <i class="validacion fas fa-times-circle"></i>
+                                                
+                                                
+                                        </div>
+                                    </div>
+                                    <div id="grupo__apellidos" class="elemento_form">
+                                        <div class="texto_form">Apellidos:</div>
+                                        <div class="input_form"><input class="inputs_form" type="text" name="apellidos"
+                                                id="apellidos" placeholder="Martinez Galvañ">
+                                                <i class="validacion fas fa-times-circle"></i>
+                                        </div>
+                                    </div>
+                                    <div id="grupo__provincia" class="elemento_form">
+                                        <div class="texto_form">Provincia:</div>
+                                        <div class="input_form"><input class="inputs_form" type="text" name="provincia"
+                                                id="provincia" placeholder="Ingrese su Direccion">
+                                                <i class="validacion fas fa-times-circle"></i>
+                                        </div>
+
+                                    </div>
+                                    <div id="grupo__codePostal" class="elemento_form">
+                                        <div class="texto_form">Codigo Postal:</div>
+                                        <div class="input_form"><input class="inputs_form" type="text" name="codePostal"
+                                                id="codePostal" placeholder="Ingrese su codigo postal">
+                                                <i class="validacion fas fa-times-circle"></i>
+                                        </div>
+
+                                    </div>
+
+                                    <div id="grupo__direccion" class="elemento_form">
+                                        <div class="texto_form">Direccion:</div>
+                                        <div class="input_form"><input class="inputs_form" type="text" name="direccion"
+                                                id="direccion" placeholder="Ingrese su Direccion">
+                                                <i class="validacion fas fa-times-circle"></i>
+                                        </div>
+
+                                    </div>
+                                    <div id="grupo__correo" class="elemento_form">
+                                        <div class="texto_form">Email:</div>
+                                        <div class="input_form"><input class="inputs_form" type="email" name="correo"
+                                                id="correo" placeholder="ejemplo@gmail.com">
+                                                <i class="validacion fas fa-times-circle"></i>
+                                        </div>
+
+                                    </div>
+                                    <div id="grupo__pass1" class="elemento_form">
+                                        <div class="texto_form">Contraseña:</div>
+                                        <div class="input_form"><input class="inputs_form" type="password" name="pass1"
+                                                id="pass1" placeholder="Ingrese su Contraseña">
+                                                <i class="validacion fas fa-times-circle"></i>
+                                        </div>
+
+                                    </div>
+                                    <div id="grupo__pass2" class="elemento_form">
+                                        <div class="texto_form">Confirmar contraseña:</div>
+                                        <div class="input_form"><input class="inputs_form" type="password" name="passRe"
+                                                id="passRe" placeholder="Repita su Contraseña">
+                                                <i class="validacion fas fa-times-circle"></i>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div id="btn_registrar" class="mb-5 ">
+                                    <input type="submit" value="Registrarse" name="Registrarse" id="registrar_cuenta">
+
+                                </div>
+
+                            </form>
+
+                            <div id="enlace_reg" class="enlace"><a class="activar_animacion" href="#">¿Ya tengo
+                                    Cuenta?</a></div>
+
+                            <form action="#" id="iniciar_Sesion_form" method="GET">
+                                <div id="datos" class="mx-auto mb-5 ">
+
+                                    <div id="emailIS" class="elemento_form">
+                                        <div class="texto_form">Email:</div>
+                                        <div class="input_form"><input class="inputs_form" type="email" name="correoIS"
+                                                id="correoIS" placeholder="ejemplo@gmail.com">
+                                        </div>
+
+                                    </div>
+                                    <div id="passIS" class="elemento_form">
+                                        <div class="texto_form">Contraseña:</div>
+                                        <div class="input_form"><input class="inputs_form" type="password" name="passIS"
+                                                id="passIS" placeholder="Ingrese su Contraseña">
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                                <div id="btn_entrar" class="activar_animacion3 mb-5 d-flex justify-content-center ">
+                                    <input type="submit" value="Entrar" name="entrar" id="inicio_sesion">
+
+                                </div>
+
+                            </form>
+
+                            
+
+                        </div>
+                    </div>
+                    <div id="enlace_reg2" class="enlace"><a class="activar_animacion2" href="#">Registrarse</a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+    <!-- fin main -->
+    <!-- inicio footer -->
+    <footer>
+        <div id="contenedor_footer" class="row">
+            <div id="col_copy" class="col-12">
+                <div id="copy">
+                    <div id="contenedor_copy">
+                        <span id="nombre">Enrique Martínez Galvañ</span>
+                        <span><i id="copy_symbol" class="far fa-copyright"></i></span>
+                    </div>
+                </div>
+            </div>
+            <div id="col_cards" class="col-12">
+                <nav id="contenedor_cards">
+
+                    <div class="card" style="width: 18rem;">
+                        <div class="imagen_card"><img src="img/img_producto/interrogante-negro.png" class="card-img-top"
+                                alt="..."></div>
+                        <div class="card-body">
+                            <h5 class="card-title">Contacto</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the
+                                bulk of the card's content.</p>
+                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                        </div>
+                    </div>
+
+                    <div class="card" style="width: 18rem;">
+                        <div class="imagen_card"><img src="img/img_producto/interrogante-negro.png" class="card-img-top"
+                                alt="..."></div>
+                        <div class="card-body">
+                            <h5 class="card-title">Email</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the
+                                bulk of the card's content.</p>
+                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                        </div>
+                    </div>
+
+                    <div class="card" style="width: 18rem;">
+                        <div class="imagen_card"><img src="img/img_producto/interrogante-negro.png" class="card-img-top"
+                                alt="..."></div>
+                        <div class="card-body">
+                            <h5 class="card-title">Sobre Nosotros</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the
+                                bulk of the card's content.</p>
+                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                        </div>
+                    </div>
+
+                </nav>
+            </div>
+        </div>
+    </footer>
+    <!-- fin footer -->
+</body>
+<script src="js/validar_formulario.js"></script>
+</html>
