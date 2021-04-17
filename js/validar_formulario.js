@@ -10,7 +10,8 @@ const expresiones = {
 	password: /^.{4,12}$/, // 4 a 12 digitos.
 	correo: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
 	telefono: /^\d{7,14}$/, // 7 a 14 numeros.
-	codPostal: /^(?:0[1-9]|[1-4]\d|5[0-2])\d{3}$/
+	codPostal: /^(?:0[1-9]|[1-4]\d|5[0-2])\d{3}$/,
+	direccion:/[a-zA-Z1-9À-ÖØ-öø-ÿ]+\.?(( |\-)[a-zA-Z1-9À-ÖØ-öø-ÿ]+\.?)* (((#|[nN][º]\.?) ?)?\d{1,4}(( ?[a-zA-Z0-9\-]+)+)?)/
 
 }
 
@@ -37,16 +38,19 @@ const validarFormulario = (e) => {
 			validarCampo(expresiones.codPostal, e.target, 'codePostal');
 			break;
 		case "pass1":
-
 			validarCampo(expresiones.password, e.target, 'pass1');
-
 			break;
 		case "passRe":
-
 			validarPassword2();
 			break;
 		case "correo":
 			validarCampo(expresiones.correo, e.target, 'correo');
+			break;
+		case "direccion":
+			validarCampo(expresiones.direccion, e.target, 'direccion');
+			break;
+		case "provincia":
+			validarCampo(expresiones.nombre, e.target, 'provincia');
 			break;
 
 	}
