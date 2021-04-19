@@ -19,6 +19,55 @@
     <script src="js/animacion.js"></script>
 
 </head>
+<?php
+require("clases/usuario.php");
+//require("lib/conexion.php");
+
+$nombre = "";
+$apellidos= "";
+$provincia= "";
+$codPostal= "";
+$direccion= "";
+$email= "";
+$pass= "";
+
+if (isset($_POST["Registrarse"])) {
+
+    $nombre = $_POST["nombre"];
+    $apellidos = $_POST["apellidos"];
+    $provincia = $_POST["provincia"];
+    $codPostal = $_POST["codePostal"];
+    $direccion = $_POST["direccion"];
+    $email = $_POST["correo"];
+    $pass = $_POST["pass1"];
+
+    
+    
+   usuario::insertar_usuario($nombre,$apellidos,$provincia,$codPostal,$direccion,$email,$pass);
+
+   /* $conexion = conectarBD(); 
+
+         
+
+                $sql = "insert into usuario (nombre,apellidos,provincia,codePostal,direccion,email,password,tipo) values ('$nombre','$apellidos','$provincia','$codPostal','$direccion','$email','$pass','2')";
+
+                
+                $res = $conexion->query ($sql);
+                if ($conexion->error!="") { 
+                    echo "Error: La ejecución de la consulta falló debido a: \n"; 
+                    echo "Query: " . $sql . "<br>\n"; 
+                    echo "Errno: " . $conexion->errno . "<br>\n"; 
+                    echo "Error: " . $conexion->error . "<br>\n"; 
+                    exit; 
+                } 
+                
+            */   
+            
+    
+}
+
+
+?>
 
 <body>
     <!-- fin header -->
@@ -31,7 +80,7 @@
                     <div class="px-3 pb-5 cover1">
                         <div class=" pb-5 profile-head text-white">
                             <h4 id="titulo_form" class="d-flex justify-content-center">Registrarse</h4>
-                            <form action="#" id="registrarse_form" method="GET">
+                            <form action="#" id="registrarse_form" method="POST">
                                 <div id="datos" class="mx-auto mb-5 ">
 
                                     <div id="grupo__nombre" class="elemento_form">
@@ -43,6 +92,7 @@
                                                 
                                                 
                                         </div>
+                                        <div class="contenedorErrorValidar"><p class="errorValidar">El nombre tiene que ser de 2 a 30 caracteres puede contener letras , espacios y pueden llevar acentos.</p></div>
                                     </div>
                                     <div id="grupo__apellidos" class="elemento_form">
                                         <div class="texto_form">Apellidos:</div>
@@ -50,6 +100,7 @@
                                                 id="apellidos" placeholder="Martinez Galvañ">
                                                 <i class="validacion fas fa-times-circle"></i>
                                         </div>
+                                        <div class="contenedorErrorValidar"><p class="errorValidar">El apellido tiene que ser de 2 a 30 caracteres puede contener letras , espacios y pueden llevar acentos.</p></div>
                                     </div>
                                     <div id="grupo__provincia" class="elemento_form">
                                         <div class="texto_form">Provincia:</div>
@@ -57,7 +108,7 @@
                                                 id="provincia" placeholder="Ingrese su Provincia">
                                                 <i class="validacion fas fa-times-circle"></i>
                                         </div>
-
+                                        <div class="contenedorErrorValidar"><p class="errorValidar">La provincia tiene que ser de 2 a 30 caracteres puede contener letras , espacios y pueden llevar acentos.</p></div>
                                     </div>
                                     <div id="grupo__codePostal" class="elemento_form">
                                         <div class="texto_form">Codigo Postal:</div>
@@ -65,7 +116,7 @@
                                                 id="codePostal" placeholder="Ingrese su codigo postal">
                                                 <i class="validacion fas fa-times-circle"></i>
                                         </div>
-
+                                        <div class="contenedorErrorValidar"><p class="errorValidar">Tiene que tener 5 dígitos</p></div>
                                     </div>
 
                                     <div id="grupo__direccion" class="elemento_form">
@@ -74,7 +125,7 @@
                                                 id="direccion" placeholder="Ejemplo ejemplo nº10">
                                                 <i class="validacion fas fa-times-circle"></i>
                                         </div>
-
+                                        <div class="contenedorErrorValidar"><p class="errorValidar">1,2 o 3 palabras seguidas de un espacio con nº y el numero</p></div>
                                     </div>
                                     <div id="grupo__correo" class="elemento_form">
                                         <div class="texto_form">Email:</div>
@@ -82,15 +133,15 @@
                                                 id="correo" placeholder="ejemplo@gmail.com">
                                                 <i class="validacion fas fa-times-circle"></i>
                                         </div>
-
+                                        <div class="contenedorErrorValidar"><p class="errorValidar">Introducir un correo valido</p></div>
                                     </div>
                                     <div id="grupo__pass1" class="elemento_form">
                                         <div class="texto_form">Contraseña:</div>
                                         <div class="input_form"><input class="inputs_form" type="password" name="pass1"
-                                                id="pass1" placeholder="Ingrese su Contraseña">
+                                                id="pass1" placeholder="De 4 a 40 caracteres">
                                                 <i class="validacion fas fa-times-circle"></i>
                                         </div>
-
+                                        <div class="contenedorErrorValidar"><p class="errorValidar">De 4 a 40 caracteres.</p></div>
                                     </div>
                                     <div id="grupo__pass2" class="elemento_form">
                                         <div class="texto_form">Confirmar contraseña:</div>
@@ -155,57 +206,7 @@
     </div>
     <!-- fin main -->
     <!-- inicio footer -->
-    <footer>
-        <div id="contenedor_footer" class="row">
-            <div id="col_copy" class="col-12">
-                <div id="copy">
-                    <div id="contenedor_copy">
-                        <span id="nombre">Enrique Martínez Galvañ</span>
-                        <span><i id="copy_symbol" class="far fa-copyright"></i></span>
-                    </div>
-                </div>
-            </div>
-            <div id="col_cards" class="col-12">
-                <nav id="contenedor_cards">
-
-                    <div class="card" style="width: 18rem;">
-                        <div class="imagen_card"><img src="img/img_producto/interrogante-negro.png" class="card-img-top"
-                                alt="..."></div>
-                        <div class="card-body">
-                            <h5 class="card-title">Contacto</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the
-                                bulk of the card's content.</p>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
-                        </div>
-                    </div>
-
-                    <div class="card" style="width: 18rem;">
-                        <div class="imagen_card"><img src="img/img_producto/interrogante-negro.png" class="card-img-top"
-                                alt="..."></div>
-                        <div class="card-body">
-                            <h5 class="card-title">Email</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the
-                                bulk of the card's content.</p>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
-                        </div>
-                    </div>
-
-                    <div class="card" style="width: 18rem;">
-                        <div class="imagen_card"><img src="img/img_producto/interrogante-negro.png" class="card-img-top"
-                                alt="..."></div>
-                        <div class="card-body">
-                            <h5 class="card-title">Sobre Nosotros</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the
-                                bulk of the card's content.</p>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
-                        </div>
-                    </div>
-
-                </nav>
-            </div>
-        </div>
-    </footer>
-    <!-- fin footer -->
+   
 </body>
 <script src="js/validar_formulario.js"></script>
 </html>

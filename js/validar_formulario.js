@@ -6,12 +6,12 @@ const inputs2 = document.querySelectorAll('#cambiar_perfil input');
 
 const expresiones = {
 	usuario: /^[a-zA-Z0-9\_\-]{4,16}$/, // Letras, numeros, guion y guion_bajo
-	nombre: /^[a-zA-ZÀ-ÿ\s]{2,40}$/, // Letras y espacios, pueden llevar acentos.
-	password: /^.{4,12}$/, // 4 a 12 digitos.
+	nombre: /^[a-zA-ZÀ-ÿ\s]{2,30}$/, // Letras y espacios, pueden llevar acentos.
+	password: /^.{4,40}$/, // 4 a 12 digitos.
 	correo: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
 	telefono: /^\d{7,14}$/, // 7 a 14 numeros.
-	codPostal: /^(?:0[1-9]|[1-4]\d|5[0-2])\d{3}$/,
-	direccion:/[a-zA-Z1-9À-ÖØ-öø-ÿ]+\.?(( |\-)[a-zA-Z1-9À-ÖØ-öø-ÿ]+\.?)* (((#|[nN][º]\.?) ?)?\d{1,4}(( ?[a-zA-Z0-9\-]+)+)?)/
+	codPostal: /^(?:0?[1-9]|[1-4]\d|5[0-2])\d{3}$/,
+	direccion: /[a-zA-Z1-9À-ÖØ-öø-ÿ]+\.?(( |\-)[a-zA-Z1-9À-ÖØ-öø-ÿ]+\.?)* (((#|[nN][º]\.?) ?)?\d{1,4}(( ?[a-zA-Z0-9\-]+)+)?)/
 
 }
 
@@ -59,9 +59,7 @@ const validarFormulario = (e) => {
 const validarFormulario2 = (e) => {
 	switch (e.target.name) {
 
-		case "nombre":
-			validarCampo2(expresiones.nombre, e.target, 'nombre');
-			break;
+		
 		case "codePostal":
 			validarCampo2(expresiones.codPostal, e.target, 'codePostal');
 			break;
@@ -70,6 +68,9 @@ const validarFormulario2 = (e) => {
 			break;
 		case "correo":
 			validarCampo2(expresiones.correo, e.target, 'correo');
+			break;
+		case "direccion":
+			validarCampo2(expresiones.direccion, e.target, 'direccion');
 			break;
 
 	}
@@ -84,6 +85,7 @@ const validarCampo = (expresion, input, campo) => {
 		document.querySelector(`#grupo__${campo} i`).classList.remove('incorrecto');
 		document.querySelector(`#grupo__${campo} input`).classList.add('correctoB');
 		document.querySelector(`#grupo__${campo} input`).classList.remove('incorrectoB');
+		document.querySelector(`#grupo__${campo} .errorValidar`).classList.remove('errorValidar-activo');
 		campos[campo] = true;
 
 	} else {
@@ -94,6 +96,7 @@ const validarCampo = (expresion, input, campo) => {
 		document.querySelector(`#grupo__${campo} i`).classList.remove('correcto');
 		document.querySelector(`#grupo__${campo} input`).classList.remove('correctoB');
 		document.querySelector(`#grupo__${campo} input`).classList.add('incorrectoB');
+		document.querySelector(`#grupo__${campo} .errorValidar`).classList.add('errorValidar-activo');
 		campos[campo] = false;
 
 	}
