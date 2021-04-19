@@ -2,7 +2,7 @@
 
 class conexion{
 
-    private static $host = "host eu-cdbr-west-01.cleardb.com";
+    private static $host = "eu-cdbr-west-01.cleardb.com";
     private static $user = "b8fb8998d6289a";
     private static $pass = "5db52478";
     private static $database ="heroku_3c62ffd81ce121e";
