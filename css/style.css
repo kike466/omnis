@@ -1,10 +1,7 @@
 body {
   padding: 0px;
   margin: 0px;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-wrap: wrap;
+ 
 }
 /*Modo oscuro*/
 .modoOscuro{
@@ -257,6 +254,7 @@ footer {
 /*modi_perfil*/
 .cover1 {
   background: #24303c;
+  padding-bottom: 50px;
 }
 #modi_perfil {
   height: 100vh;
@@ -274,6 +272,7 @@ footer {
   background-image: url("../img/fondo/fondo.jpg");
   background-size: cover;
   background-repeat: no-repeat;
+  
 
 }
 #cambiar_perfil {
@@ -324,7 +323,6 @@ footer {
   position: absolute;
   border-radius: 3px;
 }
-
 .file-select input[type="file"] {
   opacity: 0;
   width: 160px;
@@ -336,19 +334,20 @@ footer {
   content: "Foto nueva";
 }
 /*registrarse*/
-#registrarse {
-  height: 100%;
+#registrarse{
+  height: 950px;
 }
 #contenedor_global_reg {
-  height: 100%;
+  
   display: flex;
   align-content: center;
 }
 #contenedor_2 {
   height: 95%;
   margin-top: 10px;
-  margin-bottom: 100px;
+  
   background: #24303c;
+  
   
 }
 
@@ -368,6 +367,12 @@ footer {
   position: relative;
 }
 #grupo__pass1 {
+  position: relative;
+}
+#erroresRegistrar{
+  position: relative;
+}
+#erroresEntrar{
   position: relative;
 }
 #grupo__pass2 {
@@ -391,11 +396,22 @@ footer {
 
 #btn_registrar{
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
+    width: 100%;
     margin: auto;
+  }
+  #btn_entrar{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    margin: auto;
+    
   }
 #btn_registrar,#btn_entrar{
   position: relative;
+  margin: 0px;
 }
 .enlace {
   display: flex;
@@ -404,8 +420,11 @@ footer {
 #enlace_reg,#enlace_reg2{
     position: relative;
 }
-#enlace_reg2{
+#enlace_reg{
   margin-bottom: 20px;
+}
+#enlace_reg2{
+  margin-bottom: 40px;
 }
 .activar_animacion,.activar_animacion2{
   display: flex;

@@ -2,6 +2,23 @@ $(document).ready(function () {
     $("#enlace_reg2").hide();
     $("#iniciar_Sesion_form").hide();
 
+    cargar();
+
+    function guardar(valor) {
+        localStorage.setItem('animacion', valor);
+
+    }
+
+    function cargar() {
+        var animacion = localStorage.getItem('animacion');
+
+        if (!animacion) {
+            guardar('false');
+        } else if (animacion == 'true') {
+            animaciones();
+        }
+    }
+
     $(".activar_animacion").click(function () {
         $("#grupo__nombre").animate({
             opacity: '0'
@@ -44,6 +61,7 @@ $(document).ready(function () {
             top: '-170',
             opacity: '0'
         });
+        
 
         $("#enlace_reg").animate({
             top: '-200',
@@ -80,6 +98,7 @@ $(document).ready(function () {
             $("#titulo_form").text('Iniciar Sesion');
 
             $("#iniciar_Sesion_form").show();
+           
             $("#enlace_reg2").show();
 
             $("#emailIS").animate({
@@ -105,6 +124,7 @@ $(document).ready(function () {
     });
 
     $(".activar_animacion2").click(function () {
+        guardar('false');
         $("#emailIS").animate({
             top: '500',
             opacity: '0'
@@ -185,22 +205,27 @@ $(document).ready(function () {
             });
 
         }, 400);
+
     });
 
-    $(".activar_animacion3").click(function () {
+    
+
+
+
+    function animaciones () {
 
         $("#registrarse_form").hide();
         $("#enlace_reg").hide();
 
-        $("#titulo_form").text('Iniciar Sesion');
+        $("#titulo_form").text('Iniciar Sesion Animacion');
 
         $("#iniciar_Sesion_form").show();
         $("#enlace_reg2").show();
 
-    });
-    $(".activar_animacion4").click(function () {
+        
+    }
 
-        $(".activar_animacion").text('Iniciar Sesion');
-    });
+    
+   
 
 });
