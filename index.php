@@ -1,3 +1,10 @@
+<?php
+
+session_start();
+
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -49,7 +56,7 @@
                         </div>
                         <div class="items_Menu_Header">
                             <a class="a_menu_header" href="./index.html">Inicio</a>
-                            <a class="a_menu_header" href="./perfil.html">Perfil</a>
+                            <a class="a_menu_header" href="./perfil.php">Perfil</a>
                             <a class="a_menu_header" href="./modi_Perfil.html">Historial</a>
                         </div>
                     </nav>

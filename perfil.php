@@ -1,3 +1,7 @@
+<?php
+session_start();
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,9 +11,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Omnis</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
-        integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w=="
-        crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
 
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
@@ -25,15 +27,15 @@
     <header>
         <div id="contenedor_header" class="container-fluid">
             <div id="row_header" class="row">
-                
-                    <div id="div_logo" class="col-4">
-                        <a href="./index.html">
-                            <img id="logo" src="img/logo/logo-Omnis.png" alt="">
-                        </a>
-                            <span id="nombre_Tienda">mnis</span>
-                        
-                    </div>
-                
+
+                <div id="div_logo" class="col-4">
+                    <a href="./index.html">
+                        <img id="logo" src="img/logo/logo-Omnis.png" alt="">
+                    </a>
+                    <span id="nombre_Tienda">mnis</span>
+
+                </div>
+
 
                 <div id="div_Sign_Menu" class="col-8">
 
@@ -64,20 +66,43 @@
                     <div class="px-5 pb-4 cover1">
                         <div class=" align-items-end profile-head">
                             <div id="contenedor_Imagen_Perfil" class="profile ">
-                                <img src="img/img_producto/interrogante-negro.png" alt="..." 
-                                id="img_Perfil">
-                                    
+                                <img src="img/img_producto/interrogante-negro.png" alt="..." id="img_Perfil">
+
                             </div>
                             <div id="editar_perfil">
                                 <a href="./modi_Perfil.html" id="edit_perfil_boton" class="btn  btn-sm ">Editar Perfil</a>
                             </div>
 
                             <div id="datos_usuario" class="mb-5 text-white">
-                                
-                                <h4>kike</h4>
-                                <p> <i class="fas fa-map-marker-alt"></i>Dolores</p>
-                                <p><i class="fas fa-envelope-square"></i> <span id="email_perfil">
-                                        XXXXXXXXXXXXXXX@gmail.com</span></p>
+
+                                <h4>
+                                    <?php
+                                    if (isset($_SESSION["nombre"])) {
+                                       $nombre= $_SESSION["nombre"];
+                                       echo $nombre;
+                                    }
+                                    ?>
+                                </h4>
+                                <p> <i class="fas fa-map-marker-alt"></i>
+                                    <?php
+                                         if (isset($_SESSION["direccion"])) {
+                                            $direccion= $_SESSION["direccion"];
+                                            echo $direccion;
+                                         }
+
+                                    ?>
+                                </p>
+                                <p><i class="fas fa-envelope-square"></i> 
+                                    <span id="email_perfil">
+                                        <?php
+
+                                        if (isset($_SESSION["email"])) {
+                                            $email= $_SESSION["email"];
+                                       echo $email;
+                                        }
+
+                                        ?>
+                                        </span></p>
                             </div>
                         </div>
                     </div>
@@ -105,8 +130,7 @@
                 <nav id="contenedor_cards">
 
                     <div class="card" style="width: 18rem;">
-                        <div class="imagen_card"><img src="img/img_producto/interrogante-negro.png" class="card-img-top"
-                                alt="..."></div>
+                        <div class="imagen_card"><img src="img/img_producto/interrogante-negro.png" class="card-img-top" alt="..."></div>
                         <div class="card-body">
                             <h5 class="card-title">Contacto</h5>
                             <p class="card-text">Some quick example text to build on the card title and make up the
@@ -116,8 +140,7 @@
                     </div>
 
                     <div class="card" style="width: 18rem;">
-                        <div class="imagen_card"><img src="img/img_producto/interrogante-negro.png" class="card-img-top"
-                                alt="..."></div>
+                        <div class="imagen_card"><img src="img/img_producto/interrogante-negro.png" class="card-img-top" alt="..."></div>
                         <div class="card-body">
                             <h5 class="card-title">Email</h5>
                             <p class="card-text">Some quick example text to build on the card title and make up the
@@ -127,8 +150,7 @@
                     </div>
 
                     <div class="card" style="width: 18rem;">
-                        <div class="imagen_card"><img src="img/img_producto/interrogante-negro.png" class="card-img-top"
-                                alt="..."></div>
+                        <div class="imagen_card"><img src="img/img_producto/interrogante-negro.png" class="card-img-top" alt="..."></div>
                         <div class="card-body">
                             <h5 class="card-title">Sobre Nosotros</h5>
                             <p class="card-text">Some quick example text to build on the card title and make up the

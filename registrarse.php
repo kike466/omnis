@@ -4,7 +4,7 @@ require("clases/usuario.php");
  function redireccionar()
 {
 
-    header("Location: index.html");
+    header("Location: index.php");
     exit;
    
 }
@@ -112,12 +112,15 @@ if (isset($_POST["Entrar"])) {
     if (empty($datos2)) {
             
             $user =usuario::datos_usuario($emailIS);
+
+            session_start();
+
             
-         $_SESSION["login"]["nombre"] = $user["nombre"];
-         $_SESSION["login"]["id"] = $user["id_usuarios"];
-          $_SESSION["login"]["correo"] = $user["email"];
-         $_SESSION["login"]["direccion"] = $user["direccion"];
-          $_SESSION["login"]["tipo"] = $user["tipo"];
+         $_SESSION["nombre"] = $user["nombre"];
+         $_SESSION["id"] = $user["id_usuarios"];
+          $_SESSION["email"] = $user["email"];
+         $_SESSION["direccion"] = $user["direccion"];
+          $_SESSION["tipo"] = $user["tipo"];
             
          redireccionar();
                     
@@ -270,7 +273,7 @@ if (isset($_POST["Entrar"])) {
                                     Cuenta?</a></div>
 
 
-                            <form action="#" id="iniciar_Sesion_form" method="POST">
+                            <form action="" id="iniciar_Sesion_form" method="POST">
                                 <div id="datos" class="mx-auto mb-5 ">
 
                                     <div id="emailIS" class="elemento_form">
