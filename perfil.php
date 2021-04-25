@@ -29,7 +29,7 @@ session_start();
             <div id="row_header" class="row">
 
                 <div id="div_logo" class="col-4">
-                    <a href="./index.html">
+                    <a href="./index.php">
                         <img id="logo" src="img/logo/logo-Omnis.png" alt="">
                     </a>
                     <span id="nombre_Tienda">mnis</span>
@@ -48,8 +48,8 @@ session_start();
                             <i class="fas fa-bars"></i>
                         </div>
                         <div class="items_Menu_Header">
-                            <a class="a_menu_header" href="./index.html">Inicio</a>
-                            <a class="a_menu_header" href="./perfil.html">Perfil</a>
+                            <a class="a_menu_header" href="./index.php">Inicio</a>
+                            <a class="a_menu_header" href="./perfil.php">Perfil</a>
                             <a class="a_menu_header" href="./modi_Perfil.html">Historial</a>
                         </div>
                     </nav>
@@ -77,16 +77,16 @@ session_start();
 
                                 <h4>
                                     <?php
-                                    if (isset($_SESSION["nombre"])) {
-                                       $nombre= $_SESSION["nombre"];
+                                    if (isset($_SESSION["login"])) {
+                                       $nombre= $_SESSION["login"]["nombre"];
                                        echo $nombre;
                                     }
                                     ?>
                                 </h4>
                                 <p> <i class="fas fa-map-marker-alt"></i>
                                     <?php
-                                         if (isset($_SESSION["direccion"])) {
-                                            $direccion= $_SESSION["direccion"];
+                                         if (isset($_SESSION["login"])) {
+                                            $direccion= $_SESSION["login"]["direccion"];
                                             echo $direccion;
                                          }
 
@@ -96,8 +96,8 @@ session_start();
                                     <span id="email_perfil">
                                         <?php
 
-                                        if (isset($_SESSION["email"])) {
-                                            $email= $_SESSION["email"];
+                                        if (isset($_SESSION["login"])) {
+                                            $email= $_SESSION["login"]["email"];
                                        echo $email;
                                         }
 

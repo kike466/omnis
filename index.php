@@ -1,6 +1,10 @@
 <?php
 
 session_start();
+if(isset($_POST["logout"])){
+    unset($_SESSION["login"]);
+    header("Location: index.php");
+}
 
 
 
@@ -14,9 +18,7 @@ session_start();
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Omnis</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
-        integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w=="
-        crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
 
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
@@ -39,27 +41,43 @@ session_start();
                     <a href="./index.html">
                         <img id="logo" src="img/logo/logo-Omnis.png" alt="">
                     </a>
-                        <span id="nombre_Tienda">mnis</span>
-                    
+                    <span id="nombre_Tienda">mnis</span>
+
                 </div>
 
                 <div id="div_Sign_Menu" class="col-8">
 
+
                     <div id="sign">
-                        <span>Registrarse-></span>
-                        <a href="./registrarse.php" style="width: 0px;"><i class="fas fa-sign-in-alt"></i></a>
+                        <?php
+                        if (isset($_SESSION["login"])) {
+                            echo "<span>Cerrar Sesión-></span>";
+                            echo "<form id='logoutBoton' action=" . $_SERVER["PHP_SELF"] . " method='post'>";
+                                echo "<input type='submit' name='logout' value='Logout'>";
+                            echo "</form>";
+                        } else {
+                            echo "<span>Registrarse-></span>";
+                            echo "<a href='./registrarse.php' style='width: 0px;'><i class='fas fa-sign-in-alt'></i></a>";
+                        }
+
+                        ?>
                         
                     </div>
-                    <nav id="menu_header">
-                        <div class="menu_1">
-                            <i class="fas fa-bars"></i>
-                        </div>
-                        <div class="items_Menu_Header">
-                            <a class="a_menu_header" href="./index.html">Inicio</a>
-                            <a class="a_menu_header" href="./perfil.php">Perfil</a>
-                            <a class="a_menu_header" href="./modi_Perfil.html">Historial</a>
-                        </div>
-                    </nav>
+                    <?php
+                    if (isset($_SESSION["login"])) {
+                        echo "<nav id='menu_header'>";
+                            echo "<div class='menu_1'>";
+                                echo "<i class='fas fa-bars'></i>";
+                            echo "</div>";
+                            echo "<div class='items_Menu_Header'>";
+                                echo "<a class='a_menu_header' href='./index.php'>Inicio</a>";
+                                echo "<a class='a_menu_header' href='./perfil.php'>Perfil</a>";
+                                echo "<a class='a_menu_header' href='./modi_Perfil.html'>Historial</a>";
+                            echo "</div>";
+                        echo "</nav>";
+                    }
+                    ?>
+
                 </div>
             </div>
         </div>
@@ -108,8 +126,7 @@ session_start();
 
                 <div id="productos">
                     <div class="contenedor_producto">
-                        <div class="imagen_producto"><img class="img_producto"
-                                src="img/img_producto/interrogante-negro.png" alt=""></div>
+                        <div class="imagen_producto"><img class="img_producto" src="img/img_producto/interrogante-negro.png" alt=""></div>
                         <div class="overflow-auto descripcion_producto ">
                             <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ullam voluptatem doloribus
                                 nobis laborum voluptates? Eos velit rerum ut ea dignissimos omnis. Earum soluta eveniet
@@ -119,8 +136,7 @@ session_start();
                     </div>
 
                     <div class="contenedor_producto">
-                        <div class="imagen_producto"><img class="img_producto"
-                                src="img/img_producto/interrogante-negro.png" alt=""></div>
+                        <div class="imagen_producto"><img class="img_producto" src="img/img_producto/interrogante-negro.png" alt=""></div>
                         <div class="overflow-auto descripcion_producto ">
                             <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ullam voluptatem doloribus
                                 nobis laborum voluptates? Eos velit rerum ut ea dignissimos omnis. Earum soluta eveniet
@@ -130,8 +146,7 @@ session_start();
                     </div>
 
                     <div class="contenedor_producto">
-                        <div class="imagen_producto"><img class="img_producto"
-                                src="img/img_producto/interrogante-negro.png" alt=""></div>
+                        <div class="imagen_producto"><img class="img_producto" src="img/img_producto/interrogante-negro.png" alt=""></div>
                         <div class="overflow-auto descripcion_producto ">
                             <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ullam voluptatem doloribus
                                 nobis laborum voluptates? Eos velit rerum ut ea dignissimos omnis. Earum soluta eveniet
@@ -141,8 +156,7 @@ session_start();
                     </div>
 
                     <div class="contenedor_producto">
-                        <div class="imagen_producto"><img class="img_producto"
-                                src="img/img_producto/interrogante-negro.png" alt=""></div>
+                        <div class="imagen_producto"><img class="img_producto" src="img/img_producto/interrogante-negro.png" alt=""></div>
                         <div class="overflow-auto descripcion_producto ">
                             <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ullam voluptatem doloribus
                                 nobis laborum voluptates? Eos velit rerum ut ea dignissimos omnis. Earum soluta eveniet
@@ -152,8 +166,7 @@ session_start();
                     </div>
 
                     <div class="contenedor_producto">
-                        <div class="imagen_producto"><img class="img_producto"
-                                src="img/img_producto/interrogante-negro.png" alt=""></div>
+                        <div class="imagen_producto"><img class="img_producto" src="img/img_producto/interrogante-negro.png" alt=""></div>
                         <div class="overflow-auto descripcion_producto ">
                             <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ullam voluptatem doloribus
                                 nobis laborum voluptates? Eos velit rerum ut ea dignissimos omnis. Earum soluta eveniet
@@ -163,8 +176,7 @@ session_start();
                     </div>
 
                     <div class="contenedor_producto">
-                        <div class="imagen_producto"><img class="img_producto"
-                                src="img/img_producto/interrogante-negro.png" alt=""></div>
+                        <div class="imagen_producto"><img class="img_producto" src="img/img_producto/interrogante-negro.png" alt=""></div>
                         <div class="overflow-auto descripcion_producto ">
                             <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ullam voluptatem doloribus
                                 nobis laborum voluptates? Eos velit rerum ut ea dignissimos omnis. Earum soluta eveniet
@@ -204,8 +216,7 @@ session_start();
                 <nav id="contenedor_cards">
 
                     <div class="card" style="width: 18rem;">
-                        <div class="imagen_card"><img src="img/img_producto/interrogante-negro.png" class="card-img-top"
-                                alt="..."></div>
+                        <div class="imagen_card"><img src="img/img_producto/interrogante-negro.png" class="card-img-top" alt="..."></div>
                         <div class="card-body">
                             <h5 class="card-title">Contacto</h5>
                             <p class="card-text">Some quick example text to build on the card title and make up the
@@ -215,8 +226,7 @@ session_start();
                     </div>
 
                     <div class="card" style="width: 18rem;">
-                        <div class="imagen_card"><img src="img/img_producto/interrogante-negro.png" class="card-img-top"
-                                alt="..."></div>
+                        <div class="imagen_card"><img src="img/img_producto/interrogante-negro.png" class="card-img-top" alt="..."></div>
                         <div class="card-body">
                             <h5 class="card-title">Email</h5>
                             <p class="card-text">Some quick example text to build on the card title and make up the
@@ -226,8 +236,7 @@ session_start();
                     </div>
 
                     <div class="card" style="width: 18rem;">
-                        <div class="imagen_card"><img src="img/img_producto/interrogante-negro.png" class="card-img-top"
-                                alt="..."></div>
+                        <div class="imagen_card"><img src="img/img_producto/interrogante-negro.png" class="card-img-top" alt="..."></div>
                         <div class="card-body">
                             <h5 class="card-title">Sobre Nosotros</h5>
                             <p class="card-text">Some quick example text to build on the card title and make up the
