@@ -1,38 +1,36 @@
 body {
   padding: 0px;
   margin: 0px;
- 
+  height: 100%;
 }
 /*Modo oscuro*/
-.modoOscuro{
+.modoOscuro {
   background-color: rgb(32, 28, 28);
 }
-.blanco{
+.blanco {
   color: white;
 }
-.bBlanco{
+.bBlanco {
   background-color: white;
 }
-.gris{
+.gris {
   background-color: rgb(54, 47, 47);
 }
 .imagen_producto {
   width: 40%;
   height: 100%;
-  
 }
 
-#modo_claro_oscuro{
+#modo_claro_oscuro {
   background-color: none;
   display: flex;
-  justify-content: flex-end; 
+  justify-content: flex-end;
 }
-#cambiar_modo{
+#cambiar_modo {
   padding-top: 5px;
   background: none;
   border: none;
   cursor: pointer;
-   
 }
 /*header*/
 header {
@@ -155,10 +153,10 @@ a {
   padding: 5px;
   margin-bottom: 10px;
 }
+
 .imagen_producto {
   width: 40%;
   height: 100%;
-  
 }
 
 .img_producto {
@@ -268,12 +266,9 @@ footer {
 #modi_perfil,
 #registrarse,
 #perfil {
-  
   background-image: url("../img/fondo/fondo.jpg");
   background-size: cover;
   background-repeat: no-repeat;
-  
-
 }
 #cambiar_perfil {
   border: 1px solid black;
@@ -334,21 +329,18 @@ footer {
   content: "Foto nueva";
 }
 /*registrarse*/
-#registrarse{
+#registrarse {
   height: 950px;
 }
 #contenedor_global_reg {
-  
   display: flex;
   align-content: center;
 }
 #contenedor_2 {
   height: 95%;
   margin-top: 10px;
-  
+
   background: #24303c;
-  
-  
 }
 
 #grupo__correo {
@@ -357,7 +349,8 @@ footer {
 
 #grupo__codePostal {
   position: relative;
-}#grupo__provincia {
+}
+#grupo__provincia {
   position: relative;
 }
 #grupo__direccion {
@@ -369,47 +362,47 @@ footer {
 #grupo__pass1 {
   position: relative;
 }
-#erroresRegistrar{
+#erroresRegistrar {
   position: relative;
 }
-#erroresEntrar{
+#erroresEntrar {
   position: relative;
 }
 #grupo__pass2 {
   position: relative;
 }
-#emailIS{
+#emailIS {
   position: relative;
 }
 #passIS {
   position: relative;
 }
-.errorValidar{
+.errorValidar {
   font-size: 12px;
   color: red;
   display: none;
   margin: 0px;
 }
-.errorValidar-activo{
+.errorValidar-activo {
   display: block;
 }
 
-#btn_registrar{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    width: 100%;
-    margin: auto;
-  }
-  #btn_entrar{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    width: 100%;
-    margin: auto;
-    
-  }
-#btn_registrar,#btn_entrar{
+#btn_registrar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+  margin: auto;
+}
+#btn_entrar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+  margin: auto;
+}
+#btn_registrar,
+#btn_entrar {
   position: relative;
   margin: 0px;
 }
@@ -417,22 +410,23 @@ footer {
   display: flex;
   justify-content: center;
 }
-#enlace_reg,#enlace_reg2{
-    position: relative;
+#enlace_reg,
+#enlace_reg2 {
+  position: relative;
 }
-#enlace_reg{
+#enlace_reg {
   margin-bottom: 20px;
 }
-#enlace_reg2{
+#enlace_reg2 {
   margin-bottom: 40px;
 }
-.activar_animacion,.activar_animacion2{
+.activar_animacion,
+.activar_animacion2 {
   display: flex;
   justify-content: center;
   width: 150px;
   position: relative;
 }
-
 
 /*Cambia el stilo de los inputs*/
 .inputs_form {
@@ -446,30 +440,88 @@ footer {
   color: white;
 }
 
-.validacion{
+.validacion {
   display: flex;
   align-self: center;
   opacity: 0;
-	
 }
-.correcto{
+.correcto {
   color: green;
   opacity: 0.99;
 }
-.correctoB{
+.correctoB {
   border: green 3px solid;
 }
-.incorrecto{
+.incorrecto {
   color: red;
   opacity: 0.99;
 }
-.incorrectoB{
+.incorrectoB {
   border: red 3px solid;
 }
 
+#añadirProductos {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+}
 
+#contenedor_producto_Añadir {
+  height: 100%;
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  padding: 5px;
+  margin-bottom: 10px;
+  background-color: blueviolet;
+}
+#imagen_producto_Añadir {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+#img_producto_Añadir {
+  border: 1px solid black;
+  width: 100%;
+  margin-bottom: 10px;
+}
 
+#file_foto_Producto {
+  width: 100%;
+  
+}
 
+#descripcion_producto_Añadir {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+#precio_producto_Añadir {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+#stock_producto_Añadir {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+#nombre_producto_Añadir {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+#btn_Añadir {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+}
 
 @media only screen and (min-width: 768px) {
   /*header*/
@@ -499,11 +551,14 @@ footer {
     width: 100%;
   }
 
+
   .contenedor_producto {
     width: 100%;
     margin-bottom: 10px;
+    
+    
   }
-
+  
   .imagen_producto {
     width: 20%;
   }
@@ -534,7 +589,6 @@ footer {
   }
   .inputs_form {
     width: 90%;
-   
   }
 }
 @media only screen and (min-width: 1200px) {
@@ -570,7 +624,6 @@ footer {
     margin-top: 36px;
     font-size: 1.5em;
   }
-
   #productos {
     display: flex;
     flex-wrap: wrap;
@@ -596,11 +649,10 @@ footer {
   }
   /*registrar*/
 
-  .errorValidar{
-   width: 50%;
-   
+  .errorValidar {
+    width: 50%;
   }
-  .contenedorErrorValidar{
+  .contenedorErrorValidar {
     height: 60%;
     width: 100%;
     display: flex;
@@ -614,5 +666,41 @@ footer {
     flex-direction: unset;
     flex-wrap: wrap;
     justify-content: space-around;
+  }
+
+  #contenedor_producto_Añadir {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  #imagen_producto_Añadir {
+    width: 20%;
+  }
+  #añadir_foto{
+    height: 50px;
+  }
+
+  #descripcion_producto_Añadir {
+    width: 20%;
+    margin: 0px;
+  }
+
+  #precio_producto_Añadir {
+    width: 20%;
+  }
+  #stock_producto_Añadir {
+    width: 20%;
+  }
+  #nombre_producto_Añadir {
+    width: 20%;
+  }
+  #btn_Añadir {
+    width: 100%;
+    display: flex;
+    align-items: center;
+  }
+  #Añadir_producto {
+    height: 40px;
   }
 }

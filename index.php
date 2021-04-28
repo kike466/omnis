@@ -38,7 +38,7 @@ if(isset($_POST["logout"])){
         <div id="contenedor_header" class="container-fluid">
             <div id="row_header" class="row">
                 <div id="div_logo" class="col-4">
-                    <a href="./index.html">
+                    <a href="./index.php">
                         <img id="logo" src="img/logo/logo-Omnis.png" alt="">
                     </a>
                     <span id="nombre_Tienda">mnis</span>
@@ -73,6 +73,9 @@ if(isset($_POST["logout"])){
                                 echo "<a class='a_menu_header' href='./index.php'>Inicio</a>";
                                 echo "<a class='a_menu_header' href='./perfil.php'>Perfil</a>";
                                 echo "<a class='a_menu_header' href='./modi_Perfil.html'>Historial</a>";
+                                if ($_SESSION["login"]["tipo"]=0||$_SESSION["login"]["tipo"]=1) {
+                                    echo "<a class='a_menu_header' href='./productos.php'>Productos</a>";
+                                }
                             echo "</div>";
                         echo "</nav>";
                     }
@@ -126,6 +129,7 @@ if(isset($_POST["logout"])){
 
                 <div id="productos">
                     <div class="contenedor_producto">
+                    <div class="t">Nombre</div>
                         <div class="imagen_producto"><img class="img_producto" src="img/img_producto/interrogante-negro.png" alt=""></div>
                         <div class="overflow-auto descripcion_producto ">
                             <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ullam voluptatem doloribus

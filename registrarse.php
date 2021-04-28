@@ -151,7 +151,6 @@ if (isset($_POST["Entrar"])) {
 
 
 <body>
-    <!-- fin header -->
     <!-- inicio main -->
     <div id="registrarse" class="container-fluid">
 
@@ -161,7 +160,7 @@ if (isset($_POST["Entrar"])) {
                     <div class="cover1">
                         <div class=" pb-5 profile-head text-white">
                             <h4 id="titulo_form" class="d-flex justify-content-center">Registrarse</h4>
-                            <form action="#" id="registrarse_form" method="POST">
+                            <form action="<?php $_SERVER["PHP_SELF"] ?>" id="registrarse_form" method="POST">
                                 <div id="datos" class="mx-auto mb-5 ">
 
                                     <div id="grupo__nombre" class="elemento_form">
@@ -273,7 +272,7 @@ if (isset($_POST["Entrar"])) {
                                     Cuenta?</a></div>
 
 
-                            <form action="" id="iniciar_Sesion_form" method="POST">
+                            <form action="<?php $_SERVER["PHP_SELF"] ?>" id="iniciar_Sesion_form" method="POST">
                                 <div id="datos" class="mx-auto mb-5 ">
 
                                     <div id="emailIS" class="elemento_form">
@@ -336,8 +335,6 @@ if (isset($_POST["Entrar"])) {
 
     </div>
     <!-- fin main -->
-    <!-- inicio footer -->
-
 </body>
 <script src="js/validar_formulario.js"></script>
 
