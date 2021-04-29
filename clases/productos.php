@@ -1,6 +1,6 @@
 <?php
 
-require("./conexion/conexionLocal.php");
+require("./conexion/conexion.php");
 
 class producto{
 
@@ -30,6 +30,29 @@ class producto{
 
         $conectar->close();
  
+    }
+
+    public static function todos_los_datos_productos(){
+
+        $conectar = conexion::abrir_conexion();
+
+        try{
+
+            $result = $conectar->query("Select * from productos");
+            for($i = 0; $i < $result->num_rows; $i++){
+                $fila[$i] = $result->fetch_assoc();
+            } 
+
+        } catch(exception $e){
+
+            die("Error: " . $e->getMessage());
+
+        }
+
+        $conectar->close();
+
+        return $fila;
+
     }
 
    

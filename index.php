@@ -1,7 +1,7 @@
 <?php
-
+require("clases/productos.php");
 session_start();
-if(isset($_POST["logout"])){
+if (isset($_POST["logout"])) {
     unset($_SESSION["login"]);
     header("Location: index.php");
 }
@@ -21,7 +21,7 @@ if(isset($_POST["logout"])){
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
 
     <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css?v=<?php echo time(); ?>">
 
     <script src="js/jquery-3.5.1.js"></script>
     <script src="js/bootstrap.min.js"></script>
@@ -53,7 +53,7 @@ if(isset($_POST["logout"])){
                         if (isset($_SESSION["login"])) {
                             echo "<span>Cerrar Sesión-></span>";
                             echo "<form id='logoutBoton' action=" . $_SERVER["PHP_SELF"] . " method='post'>";
-                                echo "<input type='submit' name='logout' value='Logout'>";
+                            echo "<input type='submit' name='logout' value='Logout'>";
                             echo "</form>";
                         } else {
                             echo "<span>Registrarse-></span>";
@@ -61,22 +61,22 @@ if(isset($_POST["logout"])){
                         }
 
                         ?>
-                        
+
                     </div>
                     <?php
                     if (isset($_SESSION["login"])) {
                         echo "<nav id='menu_header'>";
-                            echo "<div class='menu_1'>";
-                                echo "<i class='fas fa-bars'></i>";
-                            echo "</div>";
-                            echo "<div class='items_Menu_Header'>";
-                                echo "<a class='a_menu_header' href='./index.php'>Inicio</a>";
-                                echo "<a class='a_menu_header' href='./perfil.php'>Perfil</a>";
-                                echo "<a class='a_menu_header' href='./modi_Perfil.html'>Historial</a>";
-                                if ($_SESSION["login"]["tipo"]=0||$_SESSION["login"]["tipo"]=1) {
-                                    echo "<a class='a_menu_header' href='./productos.php'>Productos</a>";
-                                }
-                            echo "</div>";
+                        echo "<div class='menu_1'>";
+                        echo "<i class='fas fa-bars'></i>";
+                        echo "</div>";
+                        echo "<div class='items_Menu_Header'>";
+                        echo "<a class='a_menu_header' href='./index.php'>Inicio</a>";
+                        echo "<a class='a_menu_header' href='./perfil.php'>Perfil</a>";
+                        echo "<a class='a_menu_header' href='./modi_Perfil.html'>Historial</a>";
+                        if ($_SESSION["login"]["tipo"] = 0 || $_SESSION["login"]["tipo"] = 1) {
+                            echo "<a class='a_menu_header' href='./productos.php'>Productos</a>";
+                        }
+                        echo "</div>";
                         echo "</nav>";
                     }
                     ?>
@@ -121,73 +121,47 @@ if(isset($_POST["logout"])){
                 <nav id="buscador" class="navbar ">
                     <div class="container justify-content-center">
                         <form action="" method="post" class="d-flex">
-                            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                            <button class="btn bg-white" type="submit">Search</button>
+                            <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
+                            <button id="buscar" class="btn" type="submit">Aplicar</button>
                         </form>
                     </div>
                 </nav>
 
                 <div id="productos">
-                    <div class="contenedor_producto">
-                    <div class="t">Nombre</div>
-                        <div class="imagen_producto"><img class="img_producto" src="img/img_producto/interrogante-negro.png" alt=""></div>
-                        <div class="overflow-auto descripcion_producto ">
-                            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ullam voluptatem doloribus
-                                nobis laborum voluptates? Eos velit rerum ut ea dignissimos omnis. Earum soluta eveniet
-                                quis ullam tenetur consectetur libero veniam.</p>
-                        </div>
-                        <div class="btn_comprar"><i class="fas fa-cart-plus"></i></div>
-                    </div>
+                    <?php
+                    $productos = producto::todos_los_datos_productos();
+                    for ($i = 0; $i < count($productos); $i++) {
+                        
+                            echo "<div class='contenedor_producto'>";
 
-                    <div class="contenedor_producto">
-                        <div class="imagen_producto"><img class="img_producto" src="img/img_producto/interrogante-negro.png" alt=""></div>
-                        <div class="overflow-auto descripcion_producto ">
-                            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ullam voluptatem doloribus
-                                nobis laborum voluptates? Eos velit rerum ut ea dignissimos omnis. Earum soluta eveniet
-                                quis ullam tenetur consectetur libero veniam.</p>
-                        </div>
-                        <div class="btn_comprar"><i class="fas fa-cart-plus"></i></div>
-                    </div>
+                                echo "<div class='nom_pun_st'>";
+                                    echo "<div class='nombre'>".$productos[$i]['nombre_producto']."  ".$productos[$i]['precio']."€</div>";
+                                    echo "<div class='puntuacion'>Puntuacion ".$productos[$i]['puntuacion']."/5</div>";
+                                    echo "<div class='stock'>Quedan ".$productos[$i]['stock']." productos</div>";
+                                echo " </div>";
 
-                    <div class="contenedor_producto">
-                        <div class="imagen_producto"><img class="img_producto" src="img/img_producto/interrogante-negro.png" alt=""></div>
-                        <div class="overflow-auto descripcion_producto ">
-                            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ullam voluptatem doloribus
-                                nobis laborum voluptates? Eos velit rerum ut ea dignissimos omnis. Earum soluta eveniet
-                                quis ullam tenetur consectetur libero veniam.</p>
-                        </div>
-                        <div class="btn_comprar"><i class="fas fa-cart-plus"></i></div>
-                    </div>
+                                echo " <div class='imagen_producto'>";
+                                    echo " <img class='img_producto' src='".$productos[$i]['ruta_Foto']."' alt='img/img_producto/interrogante-negro.png'>";
+                                echo"</div>";
 
-                    <div class="contenedor_producto">
-                        <div class="imagen_producto"><img class="img_producto" src="img/img_producto/interrogante-negro.png" alt=""></div>
-                        <div class="overflow-auto descripcion_producto ">
-                            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ullam voluptatem doloribus
-                                nobis laborum voluptates? Eos velit rerum ut ea dignissimos omnis. Earum soluta eveniet
-                                quis ullam tenetur consectetur libero veniam.</p>
-                        </div>
-                        <div class="btn_comprar"><i class="fas fa-cart-plus"></i></div>
-                    </div>
+                                echo " <div class='descripcion_producto '>";
+                                    echo " <p>".$productos[$i]['descripcion']."</p>";
+                                echo " </div>";
+                            
+                                echo " <div class='btn_comprar'>";
+                                    echo "<i class='fas fa-cart-plus'></i><div class='texto_comprar'>";
+                                    echo "<form action=".$_SERVER["PHP_SELF"]." method='post'>";
+                                        echo "<input type='hidden' name='id_producto' value=".$productos[$i]['id_producto'].">";
+                                        echo "<input type='submit' value='Comprar' id='comprar' name='comprar'></div>";
+                                    echo "</form>";
+                                echo " </div>";
 
-                    <div class="contenedor_producto">
-                        <div class="imagen_producto"><img class="img_producto" src="img/img_producto/interrogante-negro.png" alt=""></div>
-                        <div class="overflow-auto descripcion_producto ">
-                            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ullam voluptatem doloribus
-                                nobis laborum voluptates? Eos velit rerum ut ea dignissimos omnis. Earum soluta eveniet
-                                quis ullam tenetur consectetur libero veniam.</p>
-                        </div>
-                        <div class="btn_comprar"><i class="fas fa-cart-plus"></i></div>
-                    </div>
-
-                    <div class="contenedor_producto">
-                        <div class="imagen_producto"><img class="img_producto" src="img/img_producto/interrogante-negro.png" alt=""></div>
-                        <div class="overflow-auto descripcion_producto ">
-                            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ullam voluptatem doloribus
-                                nobis laborum voluptates? Eos velit rerum ut ea dignissimos omnis. Earum soluta eveniet
-                                quis ullam tenetur consectetur libero veniam.</p>
-                        </div>
-                        <div class="btn_comprar"><i class="fas fa-cart-plus"></i></div>
-                    </div>
+                            echo " </div>";
+                        
+                        
+                    }
+                    ?>
+                    
                 </div>
                 <nav aria-label="Page navigation example">
                     <ul class="pagination justify-content-center">

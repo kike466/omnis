@@ -141,6 +141,11 @@ a {
 #buscador {
   margin-bottom: 30px;
 }
+#buscar{
+  border: 1px solid black;
+  background: rgb(194,183,183);
+  background: linear-gradient(90deg, rgba(194,183,183,1) 15%, rgba(184,181,181,1) 51%, rgba(194,183,183,1) 75%);
+}
 /*Productos*/
 #productos {
   margin-bottom: 10px;
@@ -153,6 +158,31 @@ a {
   padding: 5px;
   margin-bottom: 10px;
 }
+.nom_pun_st{
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  margin-bottom: 30px;
+}
+.nombre{
+  width: 100%;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: center;
+ 
+}
+.puntuacion{
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  
+}
+.stock{
+  width: 50%;
+  display: flex;
+  justify-content: center;
+}
+
 
 .imagen_producto {
   width: 40%;
@@ -168,14 +198,28 @@ a {
 .descripcion_producto {
   font-size: 10px;
   width: 60%;
+  height: 100px;
   padding: 5px;
   align-self: center;
+  overflow: auto;
 }
 .btn_comprar {
+  margin-top: 5px;
   font-size: 1.5em;
   width: 100%;
-  align-self: center;
+  align-items: baseline;
+  display: flex;
+  flex-wrap: nowrap;
+  
 }
+
+.texto_comprar{
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+}
+
+
 /*footer*/
 footer {
   display: flex;
@@ -572,6 +616,12 @@ footer {
     display: flex;
     align-self: center;
     justify-content: center;
+    flex-wrap: wrap;
+  }
+  .texto_comprar{
+    width: 100%;
+    display: flex;
+    justify-content: center;
   }
   /*perfil,registrar,modi*/
 
@@ -634,6 +684,10 @@ footer {
     width: 40%;
     height: 100%;
     margin-bottom: 5%;
+  }
+  .nombre{
+    font-size: 1.5em;
+   
   }
   .imagen_producto {
     width: 30%;
