@@ -1,6 +1,6 @@
 <?php
 
-require("./conexion/conexion.php");
+require_once("./conexion/conexionLocal.php");
 
 class producto{
 
@@ -38,7 +38,7 @@ class producto{
 
         try{
 
-            $result = $conectar->query("Select * from productos");
+            $result = $conectar->query("Select * from productos WHERE stock >0");
             for($i = 0; $i < $result->num_rows; $i++){
                 $fila[$i] = $result->fetch_assoc();
             } 
@@ -52,6 +52,55 @@ class producto{
         $conectar->close();
 
         return $fila;
+
+    }
+    public static function buscar_productos($nombre_productos){
+
+        $conectar = conexion::abrir_conexion();
+
+        try{
+
+            $result = $conectar->query("Select * from productos where nombre_producto like'%$nombre_productos%'");
+            for($i = 0; $i < $result->num_rows; $i++){
+                $fila[$i] = $result->fetch_assoc();
+            } 
+
+           
+
+        } catch(exception $e){
+
+            die("Error: " . $e->getMessage());
+
+        }
+
+        $conectar->close();
+
+        return $fila;
+
+    }
+
+    public static function restar_productos($id_productos){
+
+        $conectar = conexion::abrir_conexion();
+
+        try{
+
+            $result = $conectar->query("Select stock from productos where id_producto='$id_productos'");
+            $fila = $result->fetch_assoc();
+            $numero_de_productos= $fila['stock'];
+            $numero_de_productos--;
+
+            $conectar->query("UPDATE productos SET stock = '$numero_de_productos' WHERE id_producto = '$id_productos'");
+
+        } catch(exception $e){
+
+            die("Error: " . $e->getMessage());
+
+        }
+
+        $conectar->close();
+
+        
 
     }
 

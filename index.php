@@ -1,11 +1,27 @@
 <?php
 require("clases/productos.php");
+require("clases/pedidos.php");
 session_start();
 if (isset($_POST["logout"])) {
     unset($_SESSION["login"]);
     header("Location: index.php");
 }
 
+if (isset($_POST['comprar'])) {
+    $id_usr=$_SESSION['login']['id'];
+    $id_pro=$_POST['id_producto'];
+    //pedidos::insertar_pedido($id_usr,$id_pro);
+    producto::restar_productos($id_pro);
+}
+
+if (isset($_POST['buscar'])) {
+
+    $productos_B = $_POST['producto_buscar'];
+
+    $productos = producto::buscar_productos($productos_B);
+}else {
+    $productos = producto::todos_los_datos_productos();
+}
 
 
 ?>
@@ -26,7 +42,7 @@ if (isset($_POST["logout"])) {
     <script src="js/jquery-3.5.1.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/dD.js"></script>
-    <script src="js/modo_claro_oscuro.js"></script>
+    <script src="js/modo_claro_oscuro.js?v=10.2.34"></script>
 
 </head>
 
@@ -121,15 +137,15 @@ if (isset($_POST["logout"])) {
                 <nav id="buscador" class="navbar ">
                     <div class="container justify-content-center">
                         <form action="" method="post" class="d-flex">
-                            <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
-                            <button id="buscar" class="btn" type="submit">Aplicar</button>
+                            <input class="form-control me-2" type="search" placeholder="Buscar" name="producto_buscar" aria-label="Search">
+                            <button id="buscar" name="buscar" class="btn" type="submit">Aplicar</button>
                         </form>
                     </div>
                 </nav>
 
                 <div id="productos">
                     <?php
-                    $productos = producto::todos_los_datos_productos();
+                    
                     for ($i = 0; $i < count($productos); $i++) {
                         
                             echo "<div class='contenedor_producto'>";

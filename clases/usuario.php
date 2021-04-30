@@ -1,6 +1,6 @@
 <?php
 
-require("./conexion/conexion.php");
+require_once("./conexion/conexionLocal.php");
 
 class usuario{
 
