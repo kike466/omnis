@@ -1,6 +1,6 @@
 <?php
 
-require_once("./conexion/conexionLocal.php");
+require_once("./conexion/conexion.php");
 
 class pedidos{
 
