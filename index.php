@@ -97,10 +97,10 @@ if (isset($_POST['buscar'])) {
                         echo "<a class='a_menu_header' href='./index.php'>Inicio</a>";
                         echo "<a class='a_menu_header' href='./perfil.php'>Perfil</a>";
                         echo "<a class='a_menu_header' href='./modi_Perfil.html'>Historial</a>";
-                        if ($_SESSION["login"]["tipo"] = 1 || $_SESSION["login"]["tipo"] = 2) {
+                        if ($_SESSION["login"]["tipo"] == 1 || $_SESSION["login"]["tipo"] == 2) {
                             echo "<a class='a_menu_header' href='./productos.php'>Productos</a>";
                         }
-                        if ($_SESSION["login"]["tipo"] = 1) {
+                        if ($_SESSION["login"]["tipo"] == 1) {
                             echo "<a class='a_menu_header' href='./administrar_usuarios.php'>Administrar</a>";
                         }
                         echo "</div>";
