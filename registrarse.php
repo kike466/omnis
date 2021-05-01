@@ -1,6 +1,5 @@
 <?php
 require("clases/usuario.php");
-//require("lib/conexion.php");
  function redireccionar()
 {
 
@@ -79,24 +78,6 @@ if (isset($_POST["Registrarse"])) {
     if (empty($datos)) {
         usuario::insertar_usuario($nombre, $apellidos, $provincia, $codPostal, $direccion, $email, $pass);
     }
-
-     /* $conexion = conectarBD(); 
-
-         
-
-                $sql = "insert into usuario (nombre,apellidos,provincia,codePostal,direccion,email,password,tipo) values ('$nombre','$apellidos','$provincia','$codPostal','$direccion','$email','$pass','2')";
-
-                
-                $res = $conexion->query ($sql);
-                if ($conexion->error!="") { 
-                    echo "Error: La ejecución de la consulta falló debido a: \n"; 
-                    echo "Query: " . $sql . "<br>\n"; 
-                    echo "Errno: " . $conexion->errno . "<br>\n"; 
-                    echo "Error: " . $conexion->error . "<br>\n"; 
-                    exit; 
-                } 
-                
-            */
 }
 
 $emailIS = "";

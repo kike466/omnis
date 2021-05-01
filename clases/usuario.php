@@ -112,6 +112,8 @@ class usuario{
         }
 
     }
+
+
     
     public static function nombre_email(){
 

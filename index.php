@@ -21,12 +21,6 @@ if (isset($_SESSION["login"])) {
     }
 }
 
-if (isset($_POST['comprar'])) {
-    $id_usr=$_SESSION['login']['id'];
-    $id_pro=$_POST['id_producto'];
-    //pedidos::insertar_pedido($id_usr,$id_pro);
-    producto::restar_productos($id_pro);
-}
 
 if (isset($_POST['buscar'])) {
 
