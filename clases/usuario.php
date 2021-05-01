@@ -1,6 +1,6 @@
 <?php
 
-require_once("./conexion/conexion.php");
+require_once("./conexion/conexionLocal.php");
 
 class usuario{
 
@@ -14,6 +14,27 @@ class usuario{
     private $pass;
     private $tipo;
 
+    public static function datos_usuario($correo){
+
+        $conectar = conexion::abrir_conexion();
+
+        try{
+
+            $result = $conectar->query("Select * from usuario where email = '$correo'");
+            $fila = $result->fetch_assoc();
+
+        } catch(exception $e){
+
+            die("Error: " . $e->getMessage());
+
+        }
+
+        $conectar->close();
+
+        return $fila;
+
+    }
+
     public static function insertar_usuario($nombre,$apellidos,$provincia,$codPostal,$direccion,$email,$pass){
 
         
@@ -22,7 +43,7 @@ class usuario{
 
         try{
 
-            $conectar->query("insert into usuario (nombre,apellidos,provincia,codePostal,direccion,email,password,tipo) values ('$nombre','$apellidos','$provincia','$codPostal','$direccion','$email','$pass','2')");
+            $conectar->query("insert into usuario (nombre,apellidos,provincia,codePostal,direccion,email,password,tipo) values ('$nombre','$apellidos','$provincia','$codPostal','$direccion','$email','$pass','3')");
 
         } catch(exception $e){
 
@@ -91,14 +112,17 @@ class usuario{
         }
 
     }
-    public static function datos_usuario($correo){
+    
+    public static function nombre_email(){
 
         $conectar = conexion::abrir_conexion();
 
         try{
 
-            $result = $conectar->query("Select * from usuario where email = '$correo'");
-            $fila = $result->fetch_assoc();
+            $result = $conectar->query("SELECT nombre,email FROM usuario");
+            for($i = 0; $i < $result->num_rows; $i++){
+                $fila[$i] = $result->fetch_assoc();
+            } 
 
         } catch(exception $e){
 
@@ -109,6 +133,86 @@ class usuario{
         $conectar->close();
 
         return $fila;
+
+    }
+    public static function hacer_admin($correo){
+
+        $usuario = usuario::datos_usuario($correo); 
+        $id_usr = $usuario["id_usuarios"];
+
+        $conectar = conexion::abrir_conexion();
+
+        try{
+
+            $conectar->query("Update usuario set tipo = '1' where id_usuarios = $id_usr");
+
+        } catch(exception $e){
+
+            die("Error: " . $e->getMessage());
+
+        }
+
+        $conectar->close();
+
+    }
+    public static function hacer_trabajador($correo){
+
+        $usuario = usuario::datos_usuario($correo); 
+        $id_usr = $usuario["id_usuarios"];
+
+        $conectar = conexion::abrir_conexion();
+
+        try{
+
+            $conectar->query("Update usuario set tipo = '2' where id_usuarios = $id_usr");
+
+        } catch(exception $e){
+
+            die("Error: " . $e->getMessage());
+
+        }
+
+        $conectar->close();
+
+    }
+    public static function hacer_usuario($correo){
+
+        $usuario = usuario::datos_usuario($correo); 
+        $id_usr = $usuario["id_usuarios"];
+
+        $conectar = conexion::abrir_conexion();
+
+        try{
+
+            $conectar->query("Update usuario set tipo = '3' where id_usuarios = $id_usr");
+
+        } catch(exception $e){
+
+            die("Error: " . $e->getMessage());
+
+        }
+
+        $conectar->close();
+
+    }
+    public static function borrar_usuario($correo){
+
+        $usuario = usuario::datos_usuario($correo); 
+        $id_usr = $usuario["id_usuarios"];
+
+        $conectar = conexion::abrir_conexion();
+
+        try{
+
+            $conectar->query("Delete from usuario where id_usuarios = '$ $id_usr'");
+
+        } catch(exception $e){
+
+            die("Error: " . $e->getMessage());
+
+        }
+
+        $conectar->close();
 
     }
 

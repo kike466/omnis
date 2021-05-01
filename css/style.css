@@ -141,10 +141,15 @@ a {
 #buscador {
   margin-bottom: 30px;
 }
-#buscar{
+#buscar {
   border: 1px solid black;
-  background: rgb(194,183,183);
-  background: linear-gradient(90deg, rgba(194,183,183,1) 15%, rgba(184,181,181,1) 51%, rgba(194,183,183,1) 75%);
+  background: rgb(194, 183, 183);
+  background: linear-gradient(
+    90deg,
+    rgba(194, 183, 183, 1) 15%,
+    rgba(184, 181, 181, 1) 51%,
+    rgba(194, 183, 183, 1) 75%
+  );
 }
 /*Productos*/
 #productos {
@@ -158,31 +163,28 @@ a {
   padding: 5px;
   margin-bottom: 10px;
 }
-.nom_pun_st{
+.nom_pun_st {
   display: flex;
   flex-wrap: wrap;
   width: 100%;
   margin-bottom: 30px;
 }
-.nombre{
+.nombre {
   width: 100%;
   margin-bottom: 10px;
   display: flex;
   justify-content: center;
- 
 }
-.puntuacion{
-  width: 50%;
-  display: flex;
-  justify-content: center;
-  
-}
-.stock{
+.puntuacion {
   width: 50%;
   display: flex;
   justify-content: center;
 }
-
+.stock {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+}
 
 .imagen_producto {
   width: 40%;
@@ -210,15 +212,13 @@ a {
   align-items: baseline;
   display: flex;
   flex-wrap: nowrap;
-  
 }
 
-.texto_comprar{
+.texto_comprar {
   width: 100%;
   display: flex;
   align-items: flex-start;
 }
-
 
 /*footer*/
 footer {
@@ -535,7 +535,6 @@ footer {
 
 #file_foto_Producto {
   width: 100%;
-  
 }
 
 #descripcion_producto_Añadir {
@@ -567,6 +566,67 @@ footer {
   justify-content: center;
 }
 
+#usuarios {
+  margin-top: 5px;
+  height: 100%;
+  width: 100%;
+  border: 1px solid black;
+}
+.usuario {
+  height: 100%;
+  margin: 5px;
+}
+.nombre_Email {
+  background-color: rgb(231, 127, 127);
+  display: flex;
+  flex-wrap: wrap;
+}
+.nombre_Administrar {
+  width: 100%;
+}
+.email_Administrar {
+  width: 100%;
+  word-break: break-all;
+}
+.botones{
+  background-color: rgb(136, 231, 127);
+}
+#form_administrar{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.hacer_admin{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.ascender_trabajador{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+.descender_trabajador{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+.descender_usuario{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+.borrar_usuario{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
 @media only screen and (min-width: 768px) {
   /*header*/
   #div_Sign_Menu {
@@ -595,14 +655,11 @@ footer {
     width: 100%;
   }
 
-
   .contenedor_producto {
     width: 100%;
     margin-bottom: 10px;
-    
-    
   }
-  
+
   .imagen_producto {
     width: 20%;
   }
@@ -618,7 +675,7 @@ footer {
     justify-content: center;
     flex-wrap: wrap;
   }
-  .texto_comprar{
+  .texto_comprar {
     width: 100%;
     display: flex;
     justify-content: center;
@@ -685,9 +742,8 @@ footer {
     height: 100%;
     margin-bottom: 5%;
   }
-  .nombre{
+  .nombre {
     font-size: 1.5em;
-   
   }
   .imagen_producto {
     width: 30%;
@@ -731,7 +787,7 @@ footer {
   #imagen_producto_Añadir {
     width: 20%;
   }
-  #añadir_foto{
+  #añadir_foto {
     height: 50px;
   }
 

@@ -7,6 +7,20 @@ if (isset($_POST["logout"])) {
     header("Location: index.php");
 }
 
+if (isset($_SESSION["login"])) {
+
+    if (isset($_POST['comprar'])) {
+        $id_usr=$_SESSION['login']['id'];
+        $id_pro=$_POST['id_producto'];
+        //pedidos::insertar_pedido($id_usr,$id_pro);
+        producto::restar_productos($id_pro);
+    }
+}else {
+    if (isset($_POST['comprar'])) {
+        header("Location: registrarse.php");
+    }
+}
+
 if (isset($_POST['comprar'])) {
     $id_usr=$_SESSION['login']['id'];
     $id_pro=$_POST['id_producto'];
@@ -89,8 +103,11 @@ if (isset($_POST['buscar'])) {
                         echo "<a class='a_menu_header' href='./index.php'>Inicio</a>";
                         echo "<a class='a_menu_header' href='./perfil.php'>Perfil</a>";
                         echo "<a class='a_menu_header' href='./modi_Perfil.html'>Historial</a>";
-                        if ($_SESSION["login"]["tipo"] = 0 || $_SESSION["login"]["tipo"] = 1) {
+                        if ($_SESSION["login"]["tipo"] = 1 || $_SESSION["login"]["tipo"] = 2) {
                             echo "<a class='a_menu_header' href='./productos.php'>Productos</a>";
+                        }
+                        if ($_SESSION["login"]["tipo"] = 1) {
+                            echo "<a class='a_menu_header' href='./administrar_usuarios.php'>Administrar</a>";
                         }
                         echo "</div>";
                         echo "</nav>";
