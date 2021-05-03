@@ -79,7 +79,7 @@ class producto{
 
     }
 
-    public static function restar_productos($id_productos){
+    public static function restar_productos($id_productos,$cantidad){
 
         $conectar = conexion::abrir_conexion();
 
@@ -88,7 +88,7 @@ class producto{
             $result = $conectar->query("Select stock from productos where id_producto='$id_productos'");
             $fila = $result->fetch_assoc();
             $numero_de_productos= $fila['stock'];
-            $numero_de_productos--;
+            $numero_de_productos= $numero_de_productos-$cantidad;
 
             $conectar->query("UPDATE productos SET stock = '$numero_de_productos' WHERE id_producto = '$id_productos'");
 

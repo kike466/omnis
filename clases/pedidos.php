@@ -13,14 +13,15 @@ class pedidos{
     private $ruta_Foto;
     
 
-    public static function insertar_pedido($id_usuarios,$id_producto){
+    public static function insertar_pedido($id_usuarios,$id_producto,$cantidad,$fecha,$direccion,$cod_postal){
 
 
         $conectar = conexion::abrir_conexion();
 
         try{
 
-            $conectar->query("insert into pedidos (id_usuarios,id_producto) values ('$id_usuarios','$id_producto')");
+
+            $conectar->query("insert into pedidos (id_usuarios,id_producto,cantidad,fecha_pedido,direccion,codePostal) values ('$id_usuarios','$id_producto','$cantidad','$fecha','$direccion','$cod_postal')");
 
         } catch(exception $e){
 
@@ -32,7 +33,33 @@ class pedidos{
  
     }
 
-   
+    public static function obtener_fecha(){
+
+        $fecha = date("Y-m-d_H:i:s");
+
+        return $fecha;
+ 
+    }
+    
+
+    public static function cancelar_pedido($id_usuarios,$fecha){
+
+
+        $conectar = conexion::abrir_conexion();
+
+        try{
+
+            $conectar->query("DELETE FROM pedidos WHERE (pedidos.id_usuarios='$id_usuarios') AND (pedidos.fecha_pedido='$fecha')");
+
+        } catch(exception $e){
+
+            die("Error: " . $e->getMessage());
+
+        }
+
+        $conectar->close();
+ 
+    }
 
    
 }

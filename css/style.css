@@ -1,7 +1,11 @@
+html {
+
+  
+}
 body {
+  
   padding: 0px;
   margin: 0px;
-  height: 100%;
 }
 /*Modo oscuro*/
 .modoOscuro {
@@ -19,6 +23,9 @@ body {
 .imagen_producto {
   width: 40%;
   height: 100%;
+}
+.fixed{
+  position: fixed;
 }
 
 #modo_claro_oscuro {
@@ -207,13 +214,14 @@ a {
 }
 .btn_comprar {
   margin-top: 5px;
-  font-size: 1.5em;
   width: 100%;
   align-items: baseline;
   display: flex;
   flex-wrap: nowrap;
 }
-
+.cantidad_producto_input{
+width: 80px;
+}
 .texto_comprar {
   width: 100%;
   display: flex;
@@ -223,7 +231,6 @@ a {
 /*footer*/
 footer {
   display: flex;
-  align-self: flex-end;
   bottom: 0;
   width: 100%;
   padding: 0px;
@@ -374,7 +381,7 @@ footer {
 }
 /*registrarse*/
 #registrarse {
-  height: 950px;
+  height:100vh;
 }
 #contenedor_global_reg {
   display: flex;
@@ -627,6 +634,34 @@ footer {
   justify-content: center;
   margin-bottom: 20px;
 }
+#historial{
+
+}
+#datos_historial{
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+#productos_historial{
+  background-color: blueviolet;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.contenedor_producto_historial{
+  height: 100%;
+  width: 90%;
+  border: 1px solid black;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 5px;
+  margin-bottom: 10px;
+}
+.cantidad_comprada{
+  width: 100%;
+}
+#pag{
+  width: 100%;
+}
 @media only screen and (min-width: 768px) {
   /*header*/
   #div_Sign_Menu {
@@ -812,5 +847,13 @@ footer {
   }
   #Añadir_producto {
     height: 40px;
+  }
+  .cantidad_comprada{
+    width: 50%;
+    display: flex;
+  justify-content: center;
+  }
+  .contenedor_producto_historial{
+    width:  60% ;
   }
 }

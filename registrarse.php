@@ -97,11 +97,12 @@ if (isset($_POST["Entrar"])) {
             session_start();
 
             
-         $_SESSION["login"]["nombre"] = $user["nombre"];
-         $_SESSION["login"]["id"] = $user["id_usuarios"];
-          $_SESSION["login"]["email"] = $user["email"];
-         $_SESSION["login"]["direccion"] = $user["direccion"];
-          $_SESSION["login"]["tipo"] = $user["tipo"];
+        $_SESSION["login"]["nombre"] = $user["nombre"];
+        $_SESSION["login"]["id"] = $user["id_usuarios"];
+        $_SESSION["login"]["email"] = $user["email"];
+        $_SESSION["login"]["direccion"] = $user["direccion"];
+        $_SESSION["login"]["codePostal"] = $user["codePostal"];
+        $_SESSION["login"]["tipo"] = $user["tipo"];
             
          redireccionar();
                     

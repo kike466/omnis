@@ -1,6 +1,7 @@
 <?php
 require("clases/productos.php");
 require("clases/pedidos.php");
+require("clases/historial.php");
 session_start();
 if (isset($_POST["logout"])) {
     unset($_SESSION["login"]);
@@ -11,9 +12,14 @@ if (isset($_SESSION["login"])) {
 
     if (isset($_POST['comprar'])) {
         $id_usr=$_SESSION['login']['id'];
+        $direccion=$_SESSION["login"]["direccion"];
+        $codPostal=$_SESSION["login"]["codePostal"];
         $id_pro=$_POST['id_producto'];
-        //pedidos::insertar_pedido($id_usr,$id_pro);
-        producto::restar_productos($id_pro);
+        $cantidad=$_POST['cantidad'];
+        $fecha=pedidos::obtener_fecha();
+         pedidos::insertar_pedido($id_usr,$id_pro,$cantidad,$fecha,$direccion,$codPostal);
+       // producto::restar_productos($id_pro,$cantidad);
+        //historial::insertar_producto_historial($id_usr,$id_pro);
     }
 }else {
     if (isset($_POST['comprar'])) {
@@ -75,9 +81,9 @@ if (isset($_POST['buscar'])) {
                     <div id="sign">
                         <?php
                         if (isset($_SESSION["login"])) {
-                            echo "<span>Cerrar Sesión-></span>";
+                            
                             echo "<form id='logoutBoton' action=" . $_SERVER["PHP_SELF"] . " method='post'>";
-                            echo "<input type='submit' name='logout' value='Logout'>";
+                            echo "<input type='submit' name='logout' value='Desconectarse'>";
                             echo "</form>";
                         } else {
                             echo "<span>Registrarse-></span>";
@@ -96,7 +102,7 @@ if (isset($_POST['buscar'])) {
                         echo "<div class='items_Menu_Header'>";
                         echo "<a class='a_menu_header' href='./index.php'>Inicio</a>";
                         echo "<a class='a_menu_header' href='./perfil.php'>Perfil</a>";
-                        echo "<a class='a_menu_header' href='./modi_Perfil.html'>Historial</a>";
+                        echo "<a class='a_menu_header' href='./historial.php'>Historial</a>";
                         if ($_SESSION["login"]["tipo"] == 1 || $_SESSION["login"]["tipo"] == 2) {
                             echo "<a class='a_menu_header' href='./productos.php'>Productos</a>";
                         }
@@ -180,9 +186,9 @@ if (isset($_POST['buscar'])) {
                                     echo "<form action=".$_SERVER["PHP_SELF"]." method='post'>";
                                         echo "<input type='hidden' name='id_producto' value=".$productos[$i]['id_producto'].">";
                                         echo "<input type='submit' value='Comprar' id='comprar' name='comprar'></div>";
+                                        echo "Cantidad<input type='number' name='cantidad' value='1' min='1' class='cantidad_producto_input'>";
                                     echo "</form>";
                                 echo " </div>";
-
                             echo " </div>";
                         
                         
