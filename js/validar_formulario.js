@@ -7,7 +7,7 @@ const inputs2 = document.querySelectorAll('#cambiar_perfil input');
 const expresiones = {
 	usuario: /^[a-zA-Z0-9\_\-]{4,16}$/, // Letras, numeros, guion y guion_bajo
 	nombre: /^[a-zA-ZÀ-ÿ\s]{2,30}$/, // Letras y espacios, pueden llevar acentos.
-	password: /^.{4,40}$/, // 4 a 12 digitos.
+	password: /^.{4,40}$/, // 4 a 40 digitos.
 	correo: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
 	telefono: /^\d{7,14}$/, // 7 a 14 numeros.
 	codPostal: /^(?:0?[1-9]|[1-4]\d|5[0-2])\d{3}$/,

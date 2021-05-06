@@ -21,7 +21,7 @@ if (isset($_POST["logout"])) {
 
     <script src="js/jquery-3.5.1.js"></script>
     <script src="js/bootstrap.min.js"></script>
-    <script src="js/dD.js"></script>
+    <script src="js/menus.js"></script>
     <script src="js/modo_claro_oscuro.js?v=10.2.34"></script>
 
 </head>
@@ -44,9 +44,8 @@ if (isset($_POST["logout"])) {
                 <div id="sign">
                     <?php
                     if (isset($_SESSION["login"])) {
-                        echo "<span>Cerrar Sesión-></span>";
                         echo "<form id='logoutBoton' action=" . $_SERVER["PHP_SELF"] . " method='post'>";
-                        echo "<input type='submit' name='logout' value='Logout'>";
+                        echo "<input type='submit' name='logout' value='Cerrar Sesion'>";
                         echo "</form>";
                     } else {
                         echo "<span>Registrarse-></span>";

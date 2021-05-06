@@ -93,16 +93,11 @@ if (isset($_POST["Entrar"])) {
     if (empty($datos2)) {
             
             $user =usuario::datos_usuario($emailIS);
+ 
 
-            session_start();
+        $email=$user["email"];
 
-            
-        $_SESSION["login"]["nombre"] = $user["nombre"];
-        $_SESSION["login"]["id"] = $user["id_usuarios"];
-        $_SESSION["login"]["email"] = $user["email"];
-        $_SESSION["login"]["direccion"] = $user["direccion"];
-        $_SESSION["login"]["codePostal"] = $user["codePostal"];
-        $_SESSION["login"]["tipo"] = $user["tipo"];
+        setcookie("sesion_iniciada","$email",time()+(60 * 60 * 24 * 365));
             
          redireccionar();
                     
@@ -148,7 +143,7 @@ if (isset($_POST["Entrar"])) {
                                     <div id="grupo__nombre" class="elemento_form">
                                         <div class="texto_form">Nombre:</div>
                                         <div class="input_form" id="">
-                                            <input class="inputs_form" type="text" name="nombre" id="nombre" value="<?php echo $nombre;?>" placeholder="Enrique">
+                                            <input class="inputs_form" type="text" name="nombre" id="nombre" value="<?php echo $nombre;?>" placeholder="Nombre">
                                             <i class="validacion fas fa-times-circle"></i>
 
 
@@ -159,7 +154,7 @@ if (isset($_POST["Entrar"])) {
                                     </div>
                                     <div id="grupo__apellidos" class="elemento_form">
                                         <div class="texto_form">Apellidos:</div>
-                                        <div class="input_form"><input class="inputs_form" type="text" name="apellidos" id="apellidos" value="<?php echo $apellidos;?>" placeholder="Martinez Galvañ">
+                                        <div class="input_form"><input class="inputs_form" type="text" name="apellidos" id="apellidos" value="<?php echo $apellidos;?>" placeholder="Apellidos">
                                             <i class="validacion fas fa-times-circle"></i>
                                         </div>
                                         <div class="contenedorErrorValidar">
@@ -187,7 +182,7 @@ if (isset($_POST["Entrar"])) {
 
                                     <div id="grupo__direccion" class="elemento_form">
                                         <div class="texto_form">Direccion:</div>
-                                        <div class="input_form"><input class="inputs_form" type="text" name="direccion" id="direccion" value="<?php echo $direccion;?>" placeholder="Ejemplo ejemplo nº10">
+                                        <div class="input_form"><input class="inputs_form" type="text" name="direccion" id="direccion" value="<?php echo $direccion;?>" placeholder="Nombre Nombre nº10 / Nombre Nombre 10">
                                             <i class="validacion fas fa-times-circle"></i>
                                         </div>
                                         <div class="contenedorErrorValidar">

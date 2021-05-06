@@ -1,16 +1,21 @@
 <?php
 require("clases/historial.php");
 require("clases/pedidos.php");
+require("clases/productos.php");
+require("clases/usuario.php");
 require("./comunes/header.php");
 
-$id_usuario=$_SESSION["login"]["id"];
+
+$id_usuario=1;
+
 
 if (isset($_POST['cancelar'])) {
     $id_pro=$_POST['id_producto'];
+    $cantidad=$_POST['cantidad_devolver'];
     $fecha=$_POST['fecha'];
     
-    
     pedidos::cancelar_pedido($id_usuario,$fecha);
+    producto::sumar_productos($id_pro,$cantidad);
     
 }
 ?>
@@ -47,6 +52,7 @@ if (isset($_POST['cancelar'])) {
                                     echo " <div class='btn_cancelar'>";
                                         
                                         echo "<form action=".$_SERVER["PHP_SELF"]." method='post'>";
+                                        echo "<input type='hidden' name='cantidad_devolver' value=".$productos[$i]['cantidad'].">";
                                             echo "<input type='hidden' name='id_producto' value=".$productos[$i]['id_producto'].">";
                                             echo "<input type='hidden' name='fecha' value=".$productos[$i]['fecha_pedido'].">";
                                             echo "<input type='submit' value='Cancelar Pedido' id='cancelar' name='cancelar'>";

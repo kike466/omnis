@@ -54,6 +54,30 @@ class producto{
         return $fila;
 
     }
+    public static function obtener_producto($id_productos){
+
+        $conectar = conexion::abrir_conexion();
+
+        try{
+
+            $result = $conectar->query("Select * from productos where id_producto='$id_productos'");
+            for($i = 0; $i < $result->num_rows; $i++){
+                $fila[$i] = $result->fetch_assoc();
+            } 
+
+           
+
+        } catch(exception $e){
+
+            die("Error: " . $e->getMessage());
+
+        }
+
+        $conectar->close();
+
+        return $fila;
+
+    }
     public static function buscar_productos($nombre_productos){
 
         $conectar = conexion::abrir_conexion();
@@ -89,6 +113,29 @@ class producto{
             $fila = $result->fetch_assoc();
             $numero_de_productos= $fila['stock'];
             $numero_de_productos= $numero_de_productos-$cantidad;
+
+            $conectar->query("UPDATE productos SET stock = '$numero_de_productos' WHERE id_producto = '$id_productos'");
+
+        } catch(exception $e){
+
+            die("Error: " . $e->getMessage());
+
+        }
+
+        $conectar->close();
+
+
+    }
+    public static function sumar_productos($id_productos,$cantidad){
+
+        $conectar = conexion::abrir_conexion();
+
+        try{
+
+            $result = $conectar->query("Select stock from productos where id_producto='$id_productos'");
+            $fila = $result->fetch_assoc();
+            $numero_de_productos= $fila['stock'];
+            $numero_de_productos= $numero_de_productos+$cantidad;
 
             $conectar->query("UPDATE productos SET stock = '$numero_de_productos' WHERE id_producto = '$id_productos'");
 

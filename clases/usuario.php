@@ -2,7 +2,8 @@
 
 require_once("./conexion/conexion.php");
 
-class usuario{
+class usuario
+{
 
     private $id_usr;
     private $nombre;
@@ -14,211 +15,194 @@ class usuario{
     private $pass;
     private $tipo;
 
-    public static function datos_usuario($correo){
+    function __construct($id_usr)
+    {
+        $this->$id_usr = $id_usr;
+    }
+    public function obtener_id_Usuario()
+    {
+        return $this->id_usr;
+    }
+
+    public static function datos_usuario($correo)
+    {
 
         $conectar = conexion::abrir_conexion();
 
-        try{
+        try {
 
             $result = $conectar->query("Select * from usuario where email = '$correo'");
             $fila = $result->fetch_assoc();
-
-        } catch(exception $e){
+        } catch (exception $e) {
 
             die("Error: " . $e->getMessage());
-
         }
 
         $conectar->close();
 
         return $fila;
-
     }
 
-    public static function insertar_usuario($nombre,$apellidos,$provincia,$codPostal,$direccion,$email,$pass){
+    public static function insertar_usuario($nombre, $apellidos, $provincia, $codPostal, $direccion, $email, $pass)
+    {
 
-        
+
 
         $conectar = conexion::abrir_conexion();
 
-        try{
+        try {
 
             $conectar->query("insert into usuario (nombre,apellidos,provincia,codePostal,direccion,email,password,tipo) values ('$nombre','$apellidos','$provincia','$codPostal','$direccion','$email','$pass','3')");
-
-        } catch(exception $e){
+        } catch (exception $e) {
 
             die("Error: " . $e->getMessage());
-
         }
 
         $conectar->close();
- 
     }
 
-    public static function existe_correo($email){
+    public static function existe_correo($email)
+    {
 
         $conectar = conexion::abrir_conexion();
 
-        try{
+        try {
 
             $result = $conectar->query("Select * from usuario where email = '$email'");
             $result = $result->num_rows;
 
-            if($result >= 1){
+            if ($result >= 1) {
 
                 $conectar->close();
                 return true;
-
             } else {
 
                 $conectar->close();
                 return false;
-
             }
-
-        } catch(exception $e){
+        } catch (exception $e) {
 
             die("Error: " . $e->getMessage());
-
         }
-
     }
-    public static function comprobamos_contraseña_correo($correo,$contraseña){
+    public static function comprobamos_contraseña_correo($correo, $contraseña)
+    {
 
         $conectar = conexion::abrir_conexion();
 
-        try{
+        try {
 
             $result = $conectar->query("Select email,password from usuario where email = '$correo'");
             $fila = $result->fetch_assoc();
-            
 
-            if($fila["email"] == $correo && $fila["password"] == $contraseña){
+
+            if ($fila["email"] == $correo && $fila["password"] == $contraseña) {
 
                 $conectar->close();
                 return true;
-
             } else {
 
                 $conectar->close();
-                return false;                
-
+                return false;
             }
-
-        } catch(exception $e){
+        } catch (exception $e) {
 
             die("Error: " . $e->getMessage());
-
         }
-
     }
 
 
-    
-    public static function nombre_email(){
+
+    public static function nombre_email()
+    {
 
         $conectar = conexion::abrir_conexion();
 
-        try{
+        try {
 
             $result = $conectar->query("SELECT nombre,email FROM usuario");
-            for($i = 0; $i < $result->num_rows; $i++){
+            for ($i = 0; $i < $result->num_rows; $i++) {
                 $fila[$i] = $result->fetch_assoc();
-            } 
-
-        } catch(exception $e){
+            }
+        } catch (exception $e) {
 
             die("Error: " . $e->getMessage());
-
         }
 
         $conectar->close();
 
         return $fila;
-
     }
-    public static function hacer_admin($correo){
+    public static function hacer_admin($correo)
+    {
 
-        $usuario = usuario::datos_usuario($correo); 
+        $usuario = usuario::datos_usuario($correo);
         $id_usr = $usuario["id_usuarios"];
 
         $conectar = conexion::abrir_conexion();
 
-        try{
+        try {
 
             $conectar->query("Update usuario set tipo = '1' where id_usuarios = $id_usr");
-
-        } catch(exception $e){
+        } catch (exception $e) {
 
             die("Error: " . $e->getMessage());
-
         }
 
         $conectar->close();
-
     }
-    public static function hacer_trabajador($correo){
+    public static function hacer_trabajador($correo)
+    {
 
-        $usuario = usuario::datos_usuario($correo); 
+        $usuario = usuario::datos_usuario($correo);
         $id_usr = $usuario["id_usuarios"];
 
         $conectar = conexion::abrir_conexion();
 
-        try{
+        try {
 
             $conectar->query("Update usuario set tipo = '2' where id_usuarios = $id_usr");
-
-        } catch(exception $e){
+        } catch (exception $e) {
 
             die("Error: " . $e->getMessage());
-
         }
 
         $conectar->close();
-
     }
-    public static function hacer_usuario($correo){
+    public static function hacer_usuario($correo)
+    {
 
-        $usuario = usuario::datos_usuario($correo); 
+        $usuario = usuario::datos_usuario($correo);
         $id_usr = $usuario["id_usuarios"];
 
         $conectar = conexion::abrir_conexion();
 
-        try{
+        try {
 
             $conectar->query("Update usuario set tipo = '3' where id_usuarios = $id_usr");
-
-        } catch(exception $e){
+        } catch (exception $e) {
 
             die("Error: " . $e->getMessage());
-
         }
 
         $conectar->close();
-
     }
-    public static function borrar_usuario($correo){
+    public static function borrar_usuario($correo)
+    {
 
-        $usuario = usuario::datos_usuario($correo); 
+        $usuario = usuario::datos_usuario($correo);
         $id_usr = $usuario["id_usuarios"];
 
         $conectar = conexion::abrir_conexion();
 
-        try{
+        try {
 
             $conectar->query("Delete from usuario where id_usuarios = '$ $id_usr'");
-
-        } catch(exception $e){
+        } catch (exception $e) {
 
             die("Error: " . $e->getMessage());
-
         }
 
         $conectar->close();
-
     }
-
-
 }
-
-?>

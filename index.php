@@ -2,26 +2,74 @@
 require("clases/productos.php");
 require("clases/pedidos.php");
 require("clases/historial.php");
-session_start();
+require("clases/usuario.php");
+require("clases/factura.php");
+
 if (isset($_POST["logout"])) {
     unset($_SESSION["login"]);
+    if (isset($_COOKIE['sesion_iniciada'])){
+    setcookie('sesion_iniciada', '', time() - 3600);
+    }
+    
     header("Location: index.php");
+    exit;
+}
+
+if (isset($_COOKIE['sesion_iniciada'])){
+
+    $email=$_COOKIE['sesion_iniciada'];
+
+        $user =usuario::datos_usuario($email);
+
+            session_start();
+
+            
+        $_SESSION["login"]["nombre"] = $user["nombre"];
+        $_SESSION["login"]["apellidos"] = $user["apellidos"];
+        $_SESSION["login"]["id"] = $user["id_usuarios"];
+        $_SESSION["login"]["email"] = $user["email"];
+        $_SESSION["login"]["provincia"] = $user["provincia"];
+        $_SESSION["login"]["direccion"] = $user["direccion"];
+        $_SESSION["login"]["codePostal"] = $user["codePostal"];
+        $_SESSION["login"]["tipo"] = $user["tipo"];
+
+        new usuario($user["id_usuarios"]);
+
 }
 
 if (isset($_SESSION["login"])) {
 
     if (isset($_POST['comprar'])) {
-        $id_usr=$_SESSION['login']['id'];
-        $direccion=$_SESSION["login"]["direccion"];
-        $codPostal=$_SESSION["login"]["codePostal"];
-        $id_pro=$_POST['id_producto'];
-        $cantidad=$_POST['cantidad'];
-        $fecha=pedidos::obtener_fecha();
-         pedidos::insertar_pedido($id_usr,$id_pro,$cantidad,$fecha,$direccion,$codPostal);
-       // producto::restar_productos($id_pro,$cantidad);
-        //historial::insertar_producto_historial($id_usr,$id_pro);
+        
+        $id_usr = $_SESSION['login']['id'];
+        $id_pro = $_POST['id_producto'];
+        $nombre_pro = $_POST['nombre_producto'];
+        $precio_producto = $_POST['precio_producto'];
+        $cantidad = $_POST['cantidad'];
+
+        $nombre_cliente = $_SESSION['login']['nombre'];
+        $apellidos_cliente = $_SESSION['login']['apellidos'];
+        $direccion_cliente = $_SESSION['login']['direccion'];
+        $provincia_cliente = $_SESSION['login']['provincia'];
+        $codigo_postal_cliente = $_SESSION['login']['codePostal'];
+
+        $fecha = pedidos::obtener_fecha();
+
+        pedidos::insertar_pedido($id_usr,$id_pro,$cantidad,$fecha,$direccion_cliente,$codigo_postal_cliente);
+        
+        historial::insertar_producto_historial($id_usr,$id_pro);
+
+        $id_pedido=pedidos::obtener_pedido($id_usr,$fecha);
+        $id_pe = $id_pedido['id_pedido'];
+     
+        $factura= new factura($id_pe,$fecha,$cantidad,$nombre_pro,$precio_producto, $nombre_cliente,$apellidos_cliente,$direccion_cliente,$provincia_cliente, $codigo_postal_cliente);
+      
+        $factura->construir_factura();
+
+        producto::restar_productos($id_pro,$cantidad);
+
     }
-}else {
+} else {
     if (isset($_POST['comprar'])) {
         header("Location: registrarse.php");
     }
@@ -33,7 +81,7 @@ if (isset($_POST['buscar'])) {
     $productos_B = $_POST['producto_buscar'];
 
     $productos = producto::buscar_productos($productos_B);
-}else {
+} else {
     $productos = producto::todos_los_datos_productos();
 }
 
@@ -55,7 +103,8 @@ if (isset($_POST['buscar'])) {
 
     <script src="js/jquery-3.5.1.js"></script>
     <script src="js/bootstrap.min.js"></script>
-    <script src="js/dD.js"></script>
+    <script src="js/menus.js"></script>
+    <script src="js/alert_comprar.js"></script>
     <script src="js/modo_claro_oscuro.js?v=10.2.34"></script>
 
 </head>
@@ -81,7 +130,7 @@ if (isset($_POST['buscar'])) {
                     <div id="sign">
                         <?php
                         if (isset($_SESSION["login"])) {
-                            
+
                             echo "<form id='logoutBoton' action=" . $_SERVER["PHP_SELF"] . " method='post'>";
                             echo "<input type='submit' name='logout' value='Desconectarse'>";
                             echo "</form>";
@@ -162,39 +211,39 @@ if (isset($_POST['buscar'])) {
 
                 <div id="productos">
                     <?php
-                    
+
                     for ($i = 0; $i < count($productos); $i++) {
-                        
-                            echo "<div class='contenedor_producto'>";
 
-                                echo "<div class='nom_pun_st'>";
-                                    echo "<div class='nombre'>".$productos[$i]['nombre_producto']."  ".$productos[$i]['precio']."€</div>";
-                                    echo "<div class='puntuacion'>Puntuacion ".$productos[$i]['puntuacion']."/5</div>";
-                                    echo "<div class='stock'>Quedan ".$productos[$i]['stock']." productos</div>";
-                                echo " </div>";
+                        echo "<div class='contenedor_producto'>";
 
-                                echo " <div class='imagen_producto'>";
-                                    echo " <img class='img_producto' src='".$productos[$i]['ruta_Foto']."' alt='img/img_producto/interrogante-negro.png'>";
-                                echo"</div>";
+                        echo "<div class='nom_pun_st'>";
+                        echo "<div class='nombre'>" . $productos[$i]['nombre_producto'] . "  " . $productos[$i]['precio'] . "€</div>";
+                        echo "<div class='puntuacion'>Puntuacion " . $productos[$i]['puntuacion'] . "/5</div>";
+                        echo "<div class='stock'>Quedan " . $productos[$i]['stock'] . " productos</div>";
+                        echo " </div>";
 
-                                echo " <div class='descripcion_producto '>";
-                                    echo " <p>".$productos[$i]['descripcion']."</p>";
-                                echo " </div>";
-                            
-                                echo " <div class='btn_comprar'>";
-                                    echo "<i class='fas fa-cart-plus'></i><div class='texto_comprar'>";
-                                    echo "<form action=".$_SERVER["PHP_SELF"]." method='post'>";
-                                        echo "<input type='hidden' name='id_producto' value=".$productos[$i]['id_producto'].">";
-                                        echo "<input type='submit' value='Comprar' id='comprar' name='comprar'></div>";
-                                        echo "Cantidad<input type='number' name='cantidad' value='1' min='1' class='cantidad_producto_input'>";
-                                    echo "</form>";
-                                echo " </div>";
-                            echo " </div>";
-                        
-                        
+                        echo " <div class='imagen_producto'>";
+                        echo " <img class='img_producto' src='" . $productos[$i]['ruta_Foto'] . "' alt='img/img_producto/interrogante-negro.png'>";
+                        echo "</div>";
+
+                        echo " <div class='descripcion_producto '>";
+                        echo " <p>" . $productos[$i]['descripcion'] . "</p>";
+                        echo " </div>";
+
+                        echo " <div class='btn_comprar'>";
+                        echo "<i class='fas fa-cart-plus'></i><div class='texto_comprar'>";
+                        echo "<form action=" . $_SERVER["PHP_SELF"] . " method='post'>";
+                        echo "<input type='hidden' name='id_producto' value=" . $productos[$i]['id_producto'] . ">";
+                        echo "<input type='hidden' name='nombre_producto' value=" . $productos[$i]['nombre_producto'] . ">";
+                        echo "<input type='hidden' name='precio_producto' value=" . $productos[$i]['precio'] . ">";
+                        echo "<input type='submit' value='Comprar' id='comprar' name='comprar'></div>";
+                        echo "Cantidad<input type='number' name='cantidad' value='1' min='1' max=". $productos[$i]['stock'] ." class='cantidad_producto_input'>";
+                        echo "</form>";
+                        echo " </div>";
+                        echo " </div>";
                     }
                     ?>
-                    
+
                 </div>
                 <nav aria-label="Page navigation example">
                     <ul class="pagination justify-content-center">

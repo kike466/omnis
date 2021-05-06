@@ -60,6 +60,26 @@ class pedidos{
         $conectar->close();
  
     }
+    public static function obtener_pedido($id_usr,$fecha){
+
+        $conectar = conexion::abrir_conexion();
+
+        try{
+
+            $result = $conectar->query("SELECT pedidos.id_pedido FROM pedidos WHERE pedidos.id_usuarios='$id_usr' AND pedidos.fecha_pedido='$fecha'");
+            $fila = $result->fetch_assoc();
+
+        } catch(exception $e){
+
+            die("Error: " . $e->getMessage());
+
+        }
+
+        $conectar->close();
+
+        return $fila;
+
+    }
 
    
 }
