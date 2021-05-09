@@ -13,6 +13,7 @@ if (isset($_POST["logout"])) {
 
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/jpg" href="./img/logo/favicon.ico"/>
     <title>Omnis</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
 
@@ -25,6 +26,13 @@ if (isset($_POST["logout"])) {
     <script src="js/modo_claro_oscuro.js?v=10.2.34"></script>
 
 </head>
+<script type="text/javascript">
+    $(document).ready(cargarProductos(0));
+    function cargarProductos(limite){
+        var url=""
+
+    }
+</script>
 <body>
 <!-- inicio header -->
 <header>

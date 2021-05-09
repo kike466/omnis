@@ -186,7 +186,7 @@ if (isset($_POST["Entrar"])) {
                                             <i class="validacion fas fa-times-circle"></i>
                                         </div>
                                         <div class="contenedorErrorValidar">
-                                            <p class="errorValidar">1,2 o 3 palabras seguidas de un espacio con nº y el numero</p>
+                                            <p class="errorValidar">1,2 o 3 palabras seguidas de un espacio opcional (con nº) y el numero</p>
                                         </div>
                                     </div>
                                     <div id="grupo__correo" class="elemento_form">

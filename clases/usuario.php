@@ -1,6 +1,6 @@
 <?php
 
-require_once("./conexion/conexion.php");
+require_once("./conexion/conexionLocal.php");
 
 class usuario
 {
@@ -197,7 +197,7 @@ class usuario
 
         try {
 
-            $conectar->query("Delete from usuario where id_usuarios = '$ $id_usr'");
+            $conectar->query("Delete from usuario where id_usuarios = '$id_usr'");
         } catch (exception $e) {
 
             die("Error: " . $e->getMessage());
@@ -205,4 +205,24 @@ class usuario
 
         $conectar->close();
     }
+
+    public static function actualizar_usuario($provincia,$codePostal,$direccion,$correo,$pass,$id)
+    {
+
+        $conectar = conexion::abrir_conexion();
+
+
+        try {
+
+            $conectar->query(" UPDATE usuario SET provincia = '$provincia', codePostal=$codePostal, direccion='$direccion', email='$correo', password=$pass WHERE id_usuarios=$id");
+        } catch (exception $e) {
+
+            die("Error: " . $e->getMessage());
+        }
+
+        $conectar->close();
+    }
+
+
+   
 }

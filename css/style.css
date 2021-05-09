@@ -159,6 +159,9 @@ a {
   );
 }
 /*Productos*/
+#contenedor_central{
+  height: 100vh;
+}
 #productos {
   margin-bottom: 10px;
 }
@@ -227,17 +230,22 @@ width: 80px;
   display: flex;
   align-items: flex-start;
 }
+#paginacion{
+  margin-top: 50px;
+}
 
 /*footer*/
 footer {
   display: flex;
   bottom: 0;
+  height: 100%;
   width: 100%;
-  padding: 0px;
+  
   background-color: rgb(59, 143, 223);
 }
 #contenedor_footer {
   width: 100%;
+  padding-bottom: 30px;
   padding: 0px;
 }
 
@@ -526,7 +534,7 @@ footer {
   flex-direction: column;
   padding: 5px;
   margin-bottom: 10px;
-  background-color: blueviolet;
+  
 }
 #imagen_producto_Añadir {
   display: flex;
@@ -635,14 +643,14 @@ footer {
   margin-bottom: 20px;
 }
 #historial{
-
+  height: 100vh;
 }
 #datos_historial{
   margin-top: 20px;
   margin-bottom: 20px;
 }
 #productos_historial{
-  background-color: blueviolet;
+    margin-top: 50px;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;

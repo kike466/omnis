@@ -20,10 +20,6 @@ if (isset($_POST['cancelar'])) {
 }
 ?>
         <div id="historial">
-            <section id="datos_historial">
-                <div id="cantidad_productos"><span>Productos comprados</span> <span>70</span></div>
-                <div id="gastado"><span>Total gastado</span> <span> 150 €</span></div>
-            </section>
             <section id="productos_historial">
 
                 <?php

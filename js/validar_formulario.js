@@ -59,7 +59,9 @@ const validarFormulario = (e) => {
 const validarFormulario2 = (e) => {
 	switch (e.target.name) {
 
-		
+		case "provincia":
+			validarCampo2(expresiones.codPostal, e.target, 'provincia');
+			break;
 		case "codePostal":
 			validarCampo2(expresiones.codPostal, e.target, 'codePostal');
 			break;
@@ -86,7 +88,7 @@ const validarCampo = (expresion, input, campo) => {
 		document.querySelector(`#grupo__${campo} input`).classList.add('correctoB');
 		document.querySelector(`#grupo__${campo} input`).classList.remove('incorrectoB');
 		document.querySelector(`#grupo__${campo} .errorValidar`).classList.remove('errorValidar-activo');
-		campos[campo] = true;
+		//campos[campo] = true;
 
 	} else {
 
@@ -97,7 +99,7 @@ const validarCampo = (expresion, input, campo) => {
 		document.querySelector(`#grupo__${campo} input`).classList.remove('correctoB');
 		document.querySelector(`#grupo__${campo} input`).classList.add('incorrectoB');
 		document.querySelector(`#grupo__${campo} .errorValidar`).classList.add('errorValidar-activo');
-		campos[campo] = false;
+		//campos[campo] = false;
 
 	}
 }
@@ -110,7 +112,8 @@ const validarCampo2 = (expresion, input, campo) => {
 		document.querySelector(`#grupo__cambiar_${campo} i`).classList.remove('incorrecto');
 		document.querySelector(`#grupo__cambiar_${campo} input`).classList.add('correctoB');
 		document.querySelector(`#grupo__cambiar_${campo} input`).classList.remove('incorrectoB');
-		campos[campo] = true;
+		document.querySelector(`#grupo__cambiar_${campo} .errorValidar`).classList.remove('errorValidar-activo');
+		//campos[campo] = true;
 
 	} else {
 
@@ -120,7 +123,8 @@ const validarCampo2 = (expresion, input, campo) => {
 		document.querySelector(`#grupo__cambiar_${campo} i`).classList.remove('correcto');
 		document.querySelector(`#grupo__cambiar_${campo} input`).classList.remove('correctoB');
 		document.querySelector(`#grupo__cambiar_${campo} input`).classList.add('incorrectoB');
-		campos[campo] = false;
+		document.querySelector(`#grupo__cambiar_${campo} .errorValidar`).classList.add('errorValidar-activo');
+		//campos[campo] = false;
 
 	}
 }

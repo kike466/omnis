@@ -216,7 +216,7 @@ class factura{
         //$pdf->Cell(190, 5, "TOTAL: ".$total_mas_iva." €", 0, 1, "C");
 
 
-        $pdf->Output('F', $archivo_de_salida); //cierra el objeto pdf
+        $pdf->Output('I', $archivo_de_salida); //cierra el objeto pdf
 
         //Creacion de las cabeceras que generarán el archivo pdf
         header("Content-Type: application/download");

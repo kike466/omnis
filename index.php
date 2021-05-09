@@ -4,43 +4,44 @@ require("clases/pedidos.php");
 require("clases/historial.php");
 require("clases/usuario.php");
 require("clases/factura.php");
+require_once("./conexion/conexion.php");
+
 
 if (isset($_POST["logout"])) {
     unset($_SESSION["login"]);
-    if (isset($_COOKIE['sesion_iniciada'])){
-    setcookie('sesion_iniciada', '', time() - 3600);
+    if (isset($_COOKIE['sesion_iniciada'])) {
+        setcookie('sesion_iniciada', '', time() - 3600);
     }
-    
+
     header("Location: index.php");
     exit;
 }
 
-if (isset($_COOKIE['sesion_iniciada'])){
+if (isset($_COOKIE['sesion_iniciada'])) {
 
-    $email=$_COOKIE['sesion_iniciada'];
+    $email = $_COOKIE['sesion_iniciada'];
 
-        $user =usuario::datos_usuario($email);
+    $user = usuario::datos_usuario($email);
 
-            session_start();
+    session_start();
 
-            
-        $_SESSION["login"]["nombre"] = $user["nombre"];
-        $_SESSION["login"]["apellidos"] = $user["apellidos"];
-        $_SESSION["login"]["id"] = $user["id_usuarios"];
-        $_SESSION["login"]["email"] = $user["email"];
-        $_SESSION["login"]["provincia"] = $user["provincia"];
-        $_SESSION["login"]["direccion"] = $user["direccion"];
-        $_SESSION["login"]["codePostal"] = $user["codePostal"];
-        $_SESSION["login"]["tipo"] = $user["tipo"];
 
-        new usuario($user["id_usuarios"]);
+    $_SESSION["login"]["nombre"] = $user["nombre"];
+    $_SESSION["login"]["apellidos"] = $user["apellidos"];
+    $_SESSION["login"]["id"] = $user["id_usuarios"];
+    $_SESSION["login"]["email"] = $user["email"];
+    $_SESSION["login"]["provincia"] = $user["provincia"];
+    $_SESSION["login"]["direccion"] = $user["direccion"];
+    $_SESSION["login"]["codePostal"] = $user["codePostal"];
+    $_SESSION["login"]["tipo"] = $user["tipo"];
 
+    new usuario($user["id_usuarios"]);
 }
 
 if (isset($_SESSION["login"])) {
 
     if (isset($_POST['comprar'])) {
-        
+
         $id_usr = $_SESSION['login']['id'];
         $id_pro = $_POST['id_producto'];
         $nombre_pro = $_POST['nombre_producto'];
@@ -55,19 +56,18 @@ if (isset($_SESSION["login"])) {
 
         $fecha = pedidos::obtener_fecha();
 
-        pedidos::insertar_pedido($id_usr,$id_pro,$cantidad,$fecha,$direccion_cliente,$codigo_postal_cliente);
-        
-        historial::insertar_producto_historial($id_usr,$id_pro);
+        pedidos::insertar_pedido($id_usr, $id_pro, $cantidad, $fecha, $direccion_cliente, $codigo_postal_cliente);
 
-        $id_pedido=pedidos::obtener_pedido($id_usr,$fecha);
+        historial::insertar_producto_historial($id_usr, $id_pro);
+
+        $id_pedido = pedidos::obtener_pedido($id_usr, $fecha);
         $id_pe = $id_pedido['id_pedido'];
-     
-        $factura= new factura($id_pe,$fecha,$cantidad,$nombre_pro,$precio_producto, $nombre_cliente,$apellidos_cliente,$direccion_cliente,$provincia_cliente, $codigo_postal_cliente);
-      
+
+        $factura = new factura($id_pe, $fecha, $cantidad, $nombre_pro, $precio_producto, $nombre_cliente, $apellidos_cliente, $direccion_cliente, $provincia_cliente, $codigo_postal_cliente);
+
         $factura->construir_factura();
 
-        producto::restar_productos($id_pro,$cantidad);
-
+        producto::restar_productos($id_pro, $cantidad);
     }
 } else {
     if (isset($_POST['comprar'])) {
@@ -76,14 +76,43 @@ if (isset($_SESSION["login"])) {
 }
 
 
-if (isset($_POST['buscar'])) {
-
-    $productos_B = $_POST['producto_buscar'];
-
-    $productos = producto::buscar_productos($productos_B);
+if (isset($_GET['buscar'])) {
+    $nombre_productos = $_GET['producto_buscar'];
 } else {
-    $productos = producto::todos_los_datos_productos();
+    $nombre_productos = "";
 }
+
+
+
+//$nombre_productos      = (isset($_GET['nombre_productos'])) ? $_GET['nombre_productos'] : $nombre_productos;
+//$query      = "SELECT * from productos where nombre_producto like'%$nombre_productos%'";
+//$productos = producto::buscar_productos($productos_B);
+
+require_once('clases/paginacion.php');
+
+$conn  = conexion::abrir_conexion();
+
+$limit      = (isset($_GET['limit'])) ? $_GET['limit'] : 2;
+$page       = (isset($_GET['page'])) ? $_GET['page'] : 1;
+$links      = (isset($_GET['links'])) ? $_GET['links'] : 1;
+//$nombre_productos      = (isset($_GET['producto_buscar'])) ? $_GET['producto_buscar'] : $nombre_productos;
+
+$query      = "SELECT * FROM productos";
+
+$Paginacion  = new Paginacion($conn, $query);
+
+$nombre_productos = (filter_input(INPUT_GET, 'producto_buscar'));
+
+$Paginacion->set_busqueda($nombre_productos);
+
+//$Paginacion->mostrar();
+$Paginacion->cambiar_query();
+
+
+
+$results    = $Paginacion->get_datos_productos($limit, $page);
+// $productos = producto::todos_los_datos_productos();
+
 
 
 ?>
@@ -95,6 +124,7 @@ if (isset($_POST['buscar'])) {
 
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/jpg" href="./img/logo/favicon.ico"/>
     <title>Omnis</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
 
@@ -171,6 +201,7 @@ if (isset($_POST['buscar'])) {
     <!-- inicio main -->
     <div id="contenedor_central" class="container-fluid ">
         <div id="modo_claro_oscuro">
+            <span id="texto_modo">Modo claro</span>
             <button id="cambiar_modo"><i class="far fa-sun"></i></button>
         </div>
         <div id="row_central" class="row">
@@ -202,59 +233,63 @@ if (isset($_POST['buscar'])) {
             <div id="col_productos" class="col-12 col-md-10 col-xl-10">
                 <nav id="buscador" class="navbar ">
                     <div class="container justify-content-center">
-                        <form action="" method="post" class="d-flex">
-                            <input class="form-control me-2" type="search" placeholder="Buscar" name="producto_buscar" aria-label="Search">
+                        <form action="" method="GET" class="d-flex">
+                            <input class="form-control me-2" type="search" placeholder="Buscar" name="producto_buscar" value="<?php echo $nombre_productos; ?>" aria-label="Search">
                             <button id="buscar" name="buscar" class="btn" type="submit">Aplicar</button>
                         </form>
                     </div>
                 </nav>
 
+                <?php //require("comunes/buscador.php"); ?>
+
                 <div id="productos">
                     <?php
 
-                    for ($i = 0; $i < count($productos); $i++) {
+
+                    for ($i = 0; $i < count($results); $i++) {
 
                         echo "<div class='contenedor_producto'>";
 
                         echo "<div class='nom_pun_st'>";
-                        echo "<div class='nombre'>" . $productos[$i]['nombre_producto'] . "  " . $productos[$i]['precio'] . "€</div>";
-                        echo "<div class='puntuacion'>Puntuacion " . $productos[$i]['puntuacion'] . "/5</div>";
-                        echo "<div class='stock'>Quedan " . $productos[$i]['stock'] . " productos</div>";
+                        echo "<div class='nombre'>" . $results[$i]['nombre_producto'] . "  (" . $results[$i]['precio'] . "€)</div>";
+                        echo "<div class='puntuacion'>Puntuacion " . $results[$i]['puntuacion'] . "/5</div>";
+                        echo "<div class='stock'>Quedan " . $results[$i]['stock'] . " productos</div>";
                         echo " </div>";
 
                         echo " <div class='imagen_producto'>";
-                        echo " <img class='img_producto' src='" . $productos[$i]['ruta_Foto'] . "' alt='img/img_producto/interrogante-negro.png'>";
+                        echo " <img class='img_producto' src='" . $results[$i]['ruta_Foto'] . "' alt='img/img_producto/interrogante-negro.png'>";
                         echo "</div>";
 
                         echo " <div class='descripcion_producto '>";
-                        echo " <p>" . $productos[$i]['descripcion'] . "</p>";
+                        echo " <p>" . $results[$i]['descripcion'] . "</p>";
                         echo " </div>";
 
                         echo " <div class='btn_comprar'>";
                         echo "<i class='fas fa-cart-plus'></i><div class='texto_comprar'>";
                         echo "<form action=" . $_SERVER["PHP_SELF"] . " method='post'>";
-                        echo "<input type='hidden' name='id_producto' value=" . $productos[$i]['id_producto'] . ">";
-                        echo "<input type='hidden' name='nombre_producto' value=" . $productos[$i]['nombre_producto'] . ">";
-                        echo "<input type='hidden' name='precio_producto' value=" . $productos[$i]['precio'] . ">";
+                        echo "<input type='hidden' name='id_producto' value=" . $results[$i]['id_producto'] . ">";
+                        echo "<input type='hidden' name='nombre_producto' value=" . $results[$i]['nombre_producto'] . ">";
+                        echo "<input type='hidden' name='precio_producto' value=" . $results[$i]['precio'] . ">";
                         echo "<input type='submit' value='Comprar' id='comprar' name='comprar'></div>";
-                        echo "Cantidad<input type='number' name='cantidad' value='1' min='1' max=". $productos[$i]['stock'] ." class='cantidad_producto_input'>";
+                        echo "Cantidad<input type='number' name='cantidad' value='1' min='1' max=" . $results[$i]['stock'] . " class='cantidad_producto_input'>";
                         echo "</form>";
                         echo " </div>";
                         echo " </div>";
                     }
+
+
+
                     ?>
 
                 </div>
-                <nav aria-label="Page navigation example">
+                <nav id="paginacion" aria-label="Page navigation example">
                     <ul class="pagination justify-content-center">
-                        <li class="page-item disabled">
-                            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
-                        </li>
-                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item"><a class="page-link" href="#">Next</a>
-                        </li>
+                        <?php
+
+                        echo $Paginacion->createLinks($links);
+
+                        ?>
+
                     </ul>
                 </nav>
             </div>
@@ -276,32 +311,32 @@ if (isset($_POST['buscar'])) {
                 <nav id="contenedor_cards">
 
                     <div class="card" style="width: 18rem;">
-                        <div class="imagen_card"><img src="img/img_producto/interrogante-negro.png" class="card-img-top" alt="..."></div>
+
                         <div class="card-body">
                             <h5 class="card-title">Contacto</h5>
                             <p class="card-text">Some quick example text to build on the card title and make up the
                                 bulk of the card's content.</p>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
+
                         </div>
                     </div>
 
                     <div class="card" style="width: 18rem;">
-                        <div class="imagen_card"><img src="img/img_producto/interrogante-negro.png" class="card-img-top" alt="..."></div>
+
                         <div class="card-body">
                             <h5 class="card-title">Email</h5>
                             <p class="card-text">Some quick example text to build on the card title and make up the
                                 bulk of the card's content.</p>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
+
                         </div>
                     </div>
 
                     <div class="card" style="width: 18rem;">
-                        <div class="imagen_card"><img src="img/img_producto/interrogante-negro.png" class="card-img-top" alt="..."></div>
+
                         <div class="card-body">
                             <h5 class="card-title">Sobre Nosotros</h5>
                             <p class="card-text">Some quick example text to build on the card title and make up the
                                 bulk of the card's content.</p>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
+
                         </div>
                     </div>
 

@@ -15,7 +15,7 @@ require("comunes/header.php");
 
                             </div>
                             <div id="editar_perfil">
-                                <a href="./modi_Perfil.html" id="edit_perfil_boton" class="btn  btn-sm ">Editar Perfil</a>
+                                <a href="./modi_Perfil.php" id="edit_perfil_boton" class="btn  btn-sm ">Editar Perfil</a>
                             </div>
 
                             <div id="datos_usuario" class="mb-5 text-white">

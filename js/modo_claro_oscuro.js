@@ -13,8 +13,16 @@ $(document).ready(function () {
         document.getElementById('contenedor_central').classList.toggle('modoOscuro');
         document.getElementById('cambiar_modo').classList.toggle('blanco');
         document.getElementById('menu_categorias').classList.toggle('blanco');
+        document.getElementById('texto_modo').classList.toggle('blanco');
+
 
         guardar(document.getElementById("contenedor_central").classList.contains('modoOscuro'));
+
+        if (document.getElementById("contenedor_central").classList.contains('modoOscuro')) {
+            $("#texto_modo").text("Modo Oscuro");
+        }else{
+            $("#texto_modo").text("Modo Claro");
+        }
 
         var productos = document.getElementsByClassName('contenedor_producto');
 

@@ -54,6 +54,7 @@ class producto{
         return $fila;
 
     }
+  
     public static function obtener_producto($id_productos){
 
         $conectar = conexion::abrir_conexion();
@@ -67,6 +68,27 @@ class producto{
 
            
 
+        } catch(exception $e){
+
+            die("Error: " . $e->getMessage());
+
+        }
+
+        $conectar->close();
+
+        return $fila;
+
+    }
+    public static function numero_productos(){
+
+        $conectar = conexion::abrir_conexion();
+
+        try{
+
+            $result = $conectar->query("Select * from productos");
+            $fila=$result->num_rows;
+          
+        
         } catch(exception $e){
 
             die("Error: " . $e->getMessage());
