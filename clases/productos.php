@@ -1,6 +1,6 @@
 <?php
 
-require_once("./conexion/conexion.php");
+require_once("conexion.php");
 
 class producto{
 
@@ -38,7 +38,7 @@ class producto{
 
         try{
 
-            $result = $conectar->query("Select * from productos WHERE stock >0");
+            $result = $conectar->query("Select * from productos");
             for($i = 0; $i < $result->num_rows; $i++){
                 $fila[$i] = $result->fetch_assoc();
             } 
@@ -169,9 +169,26 @@ class producto{
 
         $conectar->close();
 
-        
+    }
+    public static function ejecutar_query($query){
+
+        $conectar = conexion::abrir_conexion();
+
+        try{
+
+            $conectar->query($query);
+
+
+        } catch(exception $e){
+
+            die("Error: " . $e->getMessage());
+
+        }
+
+        $conectar->close();
 
     }
+
 
    
 }

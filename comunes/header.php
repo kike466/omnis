@@ -2,11 +2,14 @@
 session_start();
 if (isset($_POST["logout"])) {
     unset($_SESSION["login"]);
+    if (isset($_COOKIE['sesion_iniciada'])) {
+        setcookie('sesion_iniciada', '', time() - 3600);
+    }
     header("Location: index.php");
 }
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
@@ -22,17 +25,12 @@ if (isset($_POST["logout"])) {
 
     <script src="js/jquery-3.5.1.js"></script>
     <script src="js/bootstrap.min.js"></script>
+    
     <script src="js/menus.js"></script>
     <script src="js/modo_claro_oscuro.js?v=10.2.34"></script>
 
 </head>
-<script type="text/javascript">
-    $(document).ready(cargarProductos(0));
-    function cargarProductos(limite){
-        var url=""
 
-    }
-</script>
 <body>
 <!-- inicio header -->
 <header>
@@ -74,7 +72,7 @@ if (isset($_POST["logout"])) {
                     echo "<a class='a_menu_header' href='./perfil.php'>Perfil</a>";
                     echo "<a class='a_menu_header' href='./historial.php'>Historial</a>";
                     if ($_SESSION["login"]["tipo"] == 1 || $_SESSION["login"]["tipo"] == 2) {
-                        echo "<a class='a_menu_header' href='./productos.php'>Productos</a>";
+                        echo "<a class='a_menu_header' href='./productos_trabajadores.php'>Productos</a>";
                     }
                     if ($_SESSION["login"]["tipo"] == 1) {
                         echo "<a class='a_menu_header' href='./administrar_usuarios.php'>Administrar</a>";

@@ -1,11 +1,10 @@
 <?php
-require("clases/productos.php");
-require("clases/pedidos.php");
-require("clases/historial.php");
-require("clases/usuario.php");
-require("clases/factura.php");
-require_once("./conexion/conexion.php");
-
+require_once("./clases/productos.php");
+require_once("./clases/pedidos.php");
+require_once("./clases/historial.php");
+require_once("./clases/usuario.php");
+require_once("./clases/factura.php");
+require_once("./clases/conexion.php");
 
 if (isset($_POST["logout"])) {
     unset($_SESSION["login"]);
@@ -82,12 +81,6 @@ if (isset($_GET['buscar'])) {
     $nombre_productos = "";
 }
 
-
-
-//$nombre_productos      = (isset($_GET['nombre_productos'])) ? $_GET['nombre_productos'] : $nombre_productos;
-//$query      = "SELECT * from productos where nombre_producto like'%$nombre_productos%'";
-//$productos = producto::buscar_productos($productos_B);
-
 require_once('clases/paginacion.php');
 
 $conn  = conexion::abrir_conexion();
@@ -95,23 +88,25 @@ $conn  = conexion::abrir_conexion();
 $limit      = (isset($_GET['limit'])) ? $_GET['limit'] : 2;
 $page       = (isset($_GET['page'])) ? $_GET['page'] : 1;
 $links      = (isset($_GET['links'])) ? $_GET['links'] : 1;
-//$nombre_productos      = (isset($_GET['producto_buscar'])) ? $_GET['producto_buscar'] : $nombre_productos;
+
+$nombre_productos      = (isset($_GET['producto_buscar'])) ? $_GET['producto_buscar'] : $nombre_productos;
+
 
 $query      = "SELECT * FROM productos";
 
 $Paginacion  = new Paginacion($conn, $query);
 
-$nombre_productos = (filter_input(INPUT_GET, 'producto_buscar'));
+//$nombre_productos = (filter_input(INPUT_GET, 'producto_buscar'));
 
 $Paginacion->set_busqueda($nombre_productos);
 
-//$Paginacion->mostrar();
+
 $Paginacion->cambiar_query();
 
 
 
 $results    = $Paginacion->get_datos_productos($limit, $page);
-// $productos = producto::todos_los_datos_productos();
+
 
 
 
@@ -183,7 +178,7 @@ $results    = $Paginacion->get_datos_productos($limit, $page);
                         echo "<a class='a_menu_header' href='./perfil.php'>Perfil</a>";
                         echo "<a class='a_menu_header' href='./historial.php'>Historial</a>";
                         if ($_SESSION["login"]["tipo"] == 1 || $_SESSION["login"]["tipo"] == 2) {
-                            echo "<a class='a_menu_header' href='./productos.php'>Productos</a>";
+                            echo "<a class='a_menu_header' href='./productos_trabajadores.php'>Productos</a>";
                         }
                         if ($_SESSION["login"]["tipo"] == 1) {
                             echo "<a class='a_menu_header' href='./administrar_usuarios.php'>Administrar</a>";

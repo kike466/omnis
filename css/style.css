@@ -1,9 +1,4 @@
-html {
-
-  
-}
 body {
-  
   padding: 0px;
   margin: 0px;
 }
@@ -24,7 +19,7 @@ body {
   width: 40%;
   height: 100%;
 }
-.fixed{
+.fixed {
   position: fixed;
 }
 
@@ -159,7 +154,7 @@ a {
   );
 }
 /*Productos*/
-#contenedor_central{
+#contenedor_central {
   height: 100vh;
 }
 #productos {
@@ -222,15 +217,15 @@ a {
   display: flex;
   flex-wrap: nowrap;
 }
-.cantidad_producto_input{
-width: 80px;
+.cantidad_producto_input {
+  width: 80px;
 }
 .texto_comprar {
   width: 100%;
   display: flex;
   align-items: flex-start;
 }
-#paginacion{
+#paginacion {
   margin-top: 50px;
 }
 
@@ -240,7 +235,7 @@ footer {
   bottom: 0;
   height: 100%;
   width: 100%;
-  
+
   background-color: rgb(59, 143, 223);
 }
 #contenedor_footer {
@@ -388,9 +383,7 @@ footer {
   content: "Foto nueva";
 }
 /*registrarse*/
-#registrarse {
-  height:100vh;
-}
+
 #contenedor_global_reg {
   display: flex;
   align-content: center;
@@ -401,7 +394,12 @@ footer {
 
   background: #24303c;
 }
-
+.cienvh {
+  height: 100vh;
+}
+.cienpor {
+  height: 100%;
+}
 #grupo__correo {
   position: relative;
 }
@@ -498,7 +496,6 @@ footer {
   font-size: 15px;
   color: white;
 }
-
 .validacion {
   display: flex;
   align-self: center;
@@ -534,7 +531,6 @@ footer {
   flex-direction: column;
   padding: 5px;
   margin-bottom: 10px;
-  
 }
 #imagen_producto_Añadir {
   display: flex;
@@ -580,6 +576,11 @@ footer {
   display: flex;
   justify-content: center;
 }
+#ejecutar_querys {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
 
 #usuarios {
   margin-top: 5px;
@@ -603,59 +604,59 @@ footer {
   width: 100%;
   word-break: break-all;
 }
-.botones{
+.botones {
   background-color: rgb(136, 231, 127);
 }
-#form_administrar{
+#form_administrar {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
 }
-.hacer_admin{
+.hacer_admin {
   width: 100%;
   display: flex;
   justify-content: center;
   margin-top: 20px;
   margin-bottom: 20px;
 }
-.ascender_trabajador{
+.ascender_trabajador {
   width: 100%;
   display: flex;
   justify-content: center;
   margin-bottom: 20px;
 }
-.descender_trabajador{
+.descender_trabajador {
   width: 100%;
   display: flex;
   justify-content: center;
   margin-bottom: 20px;
 }
-.descender_usuario{
+.descender_usuario {
   width: 100%;
   display: flex;
   justify-content: center;
   margin-bottom: 20px;
 }
-.borrar_usuario{
+.borrar_usuario {
   width: 100%;
   display: flex;
   justify-content: center;
   margin-bottom: 20px;
 }
-#historial{
+#historial {
   height: 100vh;
 }
-#datos_historial{
+#datos_historial {
   margin-top: 20px;
   margin-bottom: 20px;
 }
-#productos_historial{
-    margin-top: 50px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+#productos_historial {
+  margin-top: 50px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
-.contenedor_producto_historial{
+.contenedor_producto_historial {
   height: 100%;
   width: 90%;
   border: 1px solid black;
@@ -664,10 +665,10 @@ footer {
   padding: 5px;
   margin-bottom: 10px;
 }
-.cantidad_comprada{
+.cantidad_comprada {
   width: 100%;
 }
-#pag{
+#pag {
   width: 100%;
 }
 @media only screen and (min-width: 768px) {
@@ -801,7 +802,9 @@ footer {
     width: 20%;
   }
   /*registrar*/
-
+  #registrarse {
+    height: 100vh;
+  }
   .errorValidar {
     width: 50%;
   }
@@ -856,12 +859,12 @@ footer {
   #Añadir_producto {
     height: 40px;
   }
-  .cantidad_comprada{
+  .cantidad_comprada {
     width: 50%;
     display: flex;
-  justify-content: center;
+    justify-content: center;
   }
-  .contenedor_producto_historial{
-    width:  60% ;
+  .contenedor_producto_historial {
+    width: 60%;
   }
 }

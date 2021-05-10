@@ -20,6 +20,7 @@ $(document).ready(function () {
     }
 
     $(".activar_animacion").click(function () {
+        
         $("#grupo__nombre").animate({
             opacity: '0'
         });
@@ -91,6 +92,8 @@ $(document).ready(function () {
         });
 
         setTimeout(() => {
+            $("#registrarse").addClass('cienvh');
+        $("#registrarse").removeClass('cienpor');
 
             $("#registrarse_form").hide();
             $("#enlace_reg").hide();
@@ -119,6 +122,7 @@ $(document).ready(function () {
                 opacity: '0.99'
 
             });
+            
 
         }, 400);
     });
@@ -145,8 +149,15 @@ $(document).ready(function () {
             opacity: '0'
 
         });
+        
+
+        
+        
+        
 
         setTimeout(() => {
+            $("#registrarse").addClass('cienpor');
+        $("#registrarse").removeClass('cienvh');
 
             $("#registrarse_form").show();
             $("#enlace_reg").show();

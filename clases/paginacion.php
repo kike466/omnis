@@ -37,12 +37,6 @@ class Paginacion
     {
        $this->_busqueda=$valor;
     }
-
-    public function mostrar()
-    {
-      echo $this->_busqueda;
-    }
-
     public function cambiar_query()
     {
         if (isset($this->_busqueda)) {
