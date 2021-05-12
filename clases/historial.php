@@ -9,23 +9,6 @@ class historial{
     
     
 
-    public static function insertar_producto_historial($id_usuarios,$id_producto){
-
-        $conectar = conexion::abrir_conexion();
-
-        try{
-
-            $conectar->query("insert into historial (id_usuarios,id_productos) values ('$id_usuarios','$id_producto')");
-            
-        } catch(exception $e){
-
-            die("Error: " . $e->getMessage());
-
-        }
-
-        $conectar->close();
- 
-    }
 
     public static function hay_historial_productos($id_usuarios){
 

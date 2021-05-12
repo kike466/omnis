@@ -120,7 +120,7 @@ class usuario
 
         try {
 
-            $result = $conectar->query("SELECT nombre,email FROM usuario");
+            $result = $conectar->query("SELECT nombre,email FROM usuario WHERE id_usuarios != 1");
             for ($i = 0; $i < $result->num_rows; $i++) {
                 $fila[$i] = $result->fetch_assoc();
             }

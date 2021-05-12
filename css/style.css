@@ -40,7 +40,7 @@ header {
   width: 100%;
   display: flex;
   align-self: flex-start;
-  background-color: rgb(59, 143, 223);
+  background-color: #24303c;
 }
 #contenedor_header {
   height: 100%;
@@ -64,6 +64,7 @@ header {
 }
 #nombre_Tienda {
   visibility: hidden;
+  color: white;
 }
 #div_Sign_Menu {
   display: flex;
@@ -71,6 +72,9 @@ header {
   justify-content: space-between;
   align-items: flex-start;
   margin-top: 10px;
+}
+.menu_1{
+  color: white;
 }
 .menu_1:hover {
   cursor: pointer;
@@ -155,7 +159,7 @@ a {
 }
 /*Productos*/
 #contenedor_central {
-  height: 100vh;
+  height: 100%;
 }
 #productos {
   margin-bottom: 10px;
@@ -235,8 +239,7 @@ footer {
   bottom: 0;
   height: 100%;
   width: 100%;
-
-  background-color: rgb(59, 143, 223);
+  background-color: #24303c;
 }
 #contenedor_footer {
   width: 100%;
@@ -644,17 +647,16 @@ footer {
   margin-bottom: 20px;
 }
 #historial {
-  height: 100vh;
+  height: 100%;
 }
-#datos_historial {
-  margin-top: 20px;
-  margin-bottom: 20px;
-}
+
 #productos_historial {
   margin-top: 50px;
   display: flex;
-  flex-wrap: wrap;
   justify-content: center;
+  flex-wrap: wrap;
+ 
+  
 }
 .contenedor_producto_historial {
   height: 100%;

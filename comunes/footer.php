@@ -13,32 +13,29 @@
                 <nav id="contenedor_cards">
 
                     <div class="card" style="width: 18rem;">
-                        <div class="imagen_card"><img src="img/img_producto/interrogante-negro.png" class="card-img-top" alt="..."></div>
+
                         <div class="card-body">
                             <h5 class="card-title">Contacto</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the
-                                bulk of the card's content.</p>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                            <p class="card-text">123456789 este es el telefono del administrador de la pagina</p>
+
                         </div>
                     </div>
 
                     <div class="card" style="width: 18rem;">
-                        <div class="imagen_card"><img src="img/img_producto/interrogante-negro.png" class="card-img-top" alt="..."></div>
+
                         <div class="card-body">
                             <h5 class="card-title">Email</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the
-                                bulk of the card's content.</p>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                            <p class="card-text">equique.200@hotmail.es este es el email de contacto con el administrador de la pagina</p>
+
                         </div>
                     </div>
 
                     <div class="card" style="width: 18rem;">
-                        <div class="imagen_card"><img src="img/img_producto/interrogante-negro.png" class="card-img-top" alt="..."></div>
+
                         <div class="card-body">
                             <h5 class="card-title">Sobre Nosotros</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the
-                                bulk of the card's content.</p>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                            <p class="card-text">Esta pagina web es un proyecto de 2º de DAW por lo que todo lo que compre es ficticio.Los productos tardaran 7 dias en llegar</p>
+
                         </div>
                     </div>
 

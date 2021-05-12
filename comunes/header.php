@@ -27,7 +27,7 @@ if (isset($_POST["logout"])) {
     <script src="js/bootstrap.min.js"></script>
     
     <script src="js/menus.js"></script>
-    <script src="js/modo_claro_oscuro.js?v=10.2.34"></script>
+  
 
 </head>
 

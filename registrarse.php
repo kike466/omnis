@@ -97,7 +97,7 @@ if (isset($_POST["Entrar"])) {
 
         $email=$user["email"];
 
-        setcookie("sesion_iniciada","$email",time()+(60 * 60 * 24 * 365));
+            setcookie("sesion_iniciada","$email",time()+(60 * 60 * 24 * 365));
             
          redireccionar();
                     

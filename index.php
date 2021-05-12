@@ -57,10 +57,12 @@ if (isset($_SESSION["login"])) {
 
         pedidos::insertar_pedido($id_usr, $id_pro, $cantidad, $fecha, $direccion_cliente, $codigo_postal_cliente);
 
-        historial::insertar_producto_historial($id_usr, $id_pro);
-
         $id_pedido = pedidos::obtener_pedido($id_usr, $fecha);
+
+
         $id_pe = $id_pedido['id_pedido'];
+
+        setcookie("id_pedido$id_pe","$id_pe",time()+(60 * 60 * 24 * 7));
 
         $factura = new factura($id_pe, $fecha, $cantidad, $nombre_pro, $precio_producto, $nombre_cliente, $apellidos_cliente, $direccion_cliente, $provincia_cliente, $codigo_postal_cliente);
 
@@ -85,7 +87,7 @@ require_once('clases/paginacion.php');
 
 $conn  = conexion::abrir_conexion();
 
-$limit      = (isset($_GET['limit'])) ? $_GET['limit'] : 2;
+$limit      = (isset($_GET['limit'])) ? $_GET['limit'] : 6;
 $page       = (isset($_GET['page'])) ? $_GET['page'] : 1;
 $links      = (isset($_GET['links'])) ? $_GET['links'] : 1;
 
@@ -157,7 +159,7 @@ $results    = $Paginacion->get_datos_productos($limit, $page);
                         if (isset($_SESSION["login"])) {
 
                             echo "<form id='logoutBoton' action=" . $_SERVER["PHP_SELF"] . " method='post'>";
-                            echo "<input type='submit' name='logout' value='Desconectarse'>";
+                            echo "<input type='submit' name='logout' value='Cerrar Sesion'>";
                             echo "</form>";
                         } else {
                             echo "<span>Registrarse-></span>";
@@ -309,8 +311,7 @@ $results    = $Paginacion->get_datos_productos($limit, $page);
 
                         <div class="card-body">
                             <h5 class="card-title">Contacto</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the
-                                bulk of the card's content.</p>
+                            <p class="card-text">123456789 este es el telefono del administrador de la pagina</p>
 
                         </div>
                     </div>
@@ -319,8 +320,7 @@ $results    = $Paginacion->get_datos_productos($limit, $page);
 
                         <div class="card-body">
                             <h5 class="card-title">Email</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the
-                                bulk of the card's content.</p>
+                            <p class="card-text">equique.200@hotmail.es este es el email de contacto con el administrador de la pagina</p>
 
                         </div>
                     </div>
@@ -329,11 +329,11 @@ $results    = $Paginacion->get_datos_productos($limit, $page);
 
                         <div class="card-body">
                             <h5 class="card-title">Sobre Nosotros</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the
-                                bulk of the card's content.</p>
+                            <p class="card-text">Esta pagina web es un proyecto de 2º de DAW por lo que todo lo que compre es ficticio.Los productos tardaran 7 dias en llegar</p>
 
                         </div>
                     </div>
+                   
 
                 </nav>
             </div>
