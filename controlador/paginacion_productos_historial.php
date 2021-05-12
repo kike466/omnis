@@ -1,18 +1,19 @@
 <?php
-require_once("../clases/conexion.php");
+require_once("../clases/conexionLocal.php");
 require_once("../clases/historial.php");
 $conexion = conexion::abrir_conexion();
 
 if (isset($_POST['id'])) {
     $id_usuarios = $_POST['id'];
+}else {
+    $id_usuarios="";
 }
 
-
+if (historial::hay_historial_productos($id_usuarios)=="1") {
 
 $productos_por_pagina = 3;
 $salida = '';
 
-if (historial::hay_historial_productos($id_usuarios) == "1") {
 
 
     if (isset($_POST['pagina'])) {
@@ -49,7 +50,7 @@ if (historial::hay_historial_productos($id_usuarios) == "1") {
 
         <div class="btn_cancelar">
             
-            <form action="' . $_SERVER["PHP_SELF"] . '" method="post">
+            <form action="" method="post">
             <input type="hidden" name="cantidad_devolver" value="' . $fila['cantidad'] . '">
                 <input type="hidden" name="id_producto" value="' . $fila['id_producto'] . '">
                 <input type="hidden" name="fecha" value="' . $fila['fecha_pedido'] . '">
@@ -107,7 +108,7 @@ if (historial::hay_historial_productos($id_usuarios) == "1") {
     $salida .= "</div>";
 
     echo $salida;
-
-} else {
-    echo "No hay productos en el historial";
+}else {
+    echo "No hay productos";
 }
+

@@ -4,7 +4,7 @@ require_once("./clases/pedidos.php");
 require_once("./clases/historial.php");
 require_once("./clases/usuario.php");
 require_once("./clases/factura.php");
-require_once("./clases/conexion.php");
+require_once("./clases/conexionLocal.php");
 
 if (isset($_POST["logout"])) {
     unset($_SESSION["login"]);
@@ -62,7 +62,7 @@ if (isset($_SESSION["login"])) {
 
         $id_pe = $id_pedido['id_pedido'];
 
-        setcookie("id_pedido$id_pe","$id_pe",time()+(60 * 60 * 24 * 7));
+        setcookie("id_pedido".$id_pe,"$id_pe",time()+(60 * 60 * 24 * 7));
 
         $factura = new factura($id_pe, $fecha, $cantidad, $nombre_pro, $precio_producto, $nombre_cliente, $apellidos_cliente, $direccion_cliente, $provincia_cliente, $codigo_postal_cliente);
 

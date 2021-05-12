@@ -30,9 +30,7 @@ function quitar_cookie_cancelar($id)
 <div id="historial">
     <section id="productos_historial">
 
-       
-</div>
-
+    </section>
 </div>
 <script>
     $(document).ready(function() {
