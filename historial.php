@@ -30,13 +30,7 @@ function quitar_cookie_cancelar($id)
 <div id="historial">
     <section id="productos_historial">
 
-        <?php
-        if (historial::hay_historial_productos($id_usuario) == "1") {
-        } else {
-            echo "No hay productos";
-        }
-
-        ?>
+       
 </div>
 
 </div>

@@ -183,6 +183,7 @@ a {
   margin-bottom: 10px;
   display: flex;
   justify-content: center;
+ 
 }
 .puntuacion {
   width: 50%;
@@ -755,6 +756,7 @@ footer {
   #nombre_Tienda {
     font-size: 1.5em;
     visibility: unset;
+    
   }
   #div_Sign_Menu {
     display: flex;
@@ -818,6 +820,9 @@ footer {
   }
 
   /*footer*/
+  #nombre_dueño{
+    color: white;
+  }
 
   #contenedor_cards {
     display: flex;

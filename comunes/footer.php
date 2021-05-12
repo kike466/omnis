@@ -4,7 +4,7 @@
             <div id="col_copy" class="col-12">
                 <div id="copy">
                     <div id="contenedor_copy">
-                        <span id="nombre">Enrique Martínez Galvañ</span>
+                        <span id="nombre_dueño">Enrique Martínez Galvañ</span>
                         <span><i id="copy_symbol" class="far fa-copyright"></i></span>
                     </div>
                 </div>
@@ -38,6 +38,7 @@
 
                         </div>
                     </div>
+                   
 
                 </nav>
             </div>

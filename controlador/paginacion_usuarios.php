@@ -10,6 +10,7 @@ $salida = '';
 
 if (isset($_POST['pagina'])) {
     $pagina = $_POST['pagina'];
+    $pagina=intval($pagina);
 } else {
     $pagina = 1;
 }
@@ -52,12 +53,14 @@ $paginas_totales = ceil($numero_de_filas / $productos_por_pagina);
 
 $salida .= "<div class='d-flex justify-content-center' style='width: 100%;'>";
 $salida .= "<ul class='pagination justify-content-center'>";
+$pag_siguiente=$pagina+1;
+$pag_anterior=$pagina-1;
 
 if ($pagina == 1) {
 
     $salida       .= '<li class="page-item disabled"><a class="page-link paginacion" pagina=' . 1 . '>&laquo;</a></li>';
 } else {
-    $salida       .= '<li><a class="page-link paginacion" pagina=' . ($pagina-1) . '">&laquo;</a></li>';
+    $salida       .= '<li><a class="page-link paginacion" pagina=' .$pag_anterior . '">&laquo;</a></li>';
 }
 
 for ($i = 1; $i <= $paginas_totales; $i++) {
@@ -72,7 +75,7 @@ if ($pagina == $paginas_totales) {
 
     $salida       .= '<li class="page-item disabled"><a class="page-link paginacion" pagina=' .$paginas_totales . '>&raquo;</a></li>';
 } else {
-    $salida       .= '<li><a class="page-link paginacion" pagina=' .($pagina+1) . '">&raquo;</a></li>';
+    $salida       .= '<li><a class="page-link paginacion" pagina=' .$pag_siguiente . '">&raquo;</a></li>';
 }
 
 $salida .= "</ul>";
