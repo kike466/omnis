@@ -62,7 +62,7 @@ if (isset($_SESSION["login"])) {
 
         $id_pe = $id_pedido['id_pedido'];
 
-        setcookie("id_pedido".$id_pe,"$id_pe",time()+(60 * 60 * 24 * 7));
+        setcookie("id_pedido" . $id_pe, "$id_pe", time() + (60 * 60 * 24 * 7));
 
         $factura = new factura($id_pe, $fecha, $cantidad, $nombre_pro, $precio_producto, $nombre_cliente, $apellidos_cliente, $direccion_cliente, $provincia_cliente, $codigo_postal_cliente);
 
@@ -82,6 +82,7 @@ if (isset($_GET['buscar'])) {
 } else {
     $nombre_productos = "";
 }
+
 
 require_once('clases/paginacion.php');
 
@@ -106,6 +107,43 @@ $Paginacion->set_busqueda($nombre_productos);
 $Paginacion->cambiar_query();
 
 
+$categorias=array();
+
+
+
+if (isset($_GET['categorias'])) {
+    $categorias = $_GET['categorias'];
+
+    
+if (isset($categorias[0])) {
+    if ($categorias[0]=="AZ") {
+        $query2="ORDER BY productos.nombre_producto ASC";
+        $Paginacion->cambiar_query2($query2);
+    }else {
+        $query2="ORDER BY productos.nombre_producto DESC";
+        $Paginacion->cambiar_query2($query2);
+    }
+}
+    
+    if (isset($categorias[1])) {
+        if ($categorias[1]=="menor") {
+            $query3=", productos.precio ASC";
+            $Paginacion->cambiar_query3($query3);
+        }else {
+            $query3=", productos.precio DESC";
+            $Paginacion->cambiar_query3($query3);
+        }
+    }
+    
+
+}else {
+    $categorias[0]     = (isset($_GET['c1'])) ? $_GET['c1'] : "AZ";
+    $categorias[1]     = (isset($_GET['c2'])) ? $_GET['c2'] : "menor";
+}
+
+
+
+
 
 $results    = $Paginacion->get_datos_productos($limit, $page);
 
@@ -121,7 +159,7 @@ $results    = $Paginacion->get_datos_productos($limit, $page);
 
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" type="image/jpg" href="./img/logo/favicon.ico"/>
+    <link rel="shortcut icon" type="image/jpg" href="./img/logo/favicon.ico" />
     <title>Omnis</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
 
@@ -133,6 +171,7 @@ $results    = $Paginacion->get_datos_productos($limit, $page);
     <script src="js/menus.js"></script>
     <script src="js/alert_comprar.js"></script>
     <script src="js/modo_claro_oscuro.js?v=10.2.34"></script>
+    <script src="./js/controlar_categorias.js"></script>
 
 </head>
 
@@ -151,7 +190,7 @@ $results    = $Paginacion->get_datos_productos($limit, $page);
 
                 </div>
 
-                <div id="div_Sign_Menu" class="col-8">
+                <div id="div_Sign_Menu"  class="col-8">
 
 
                     <div id="sign">
@@ -162,7 +201,7 @@ $results    = $Paginacion->get_datos_productos($limit, $page);
                             echo "<input type='submit' name='logout' value='Cerrar Sesion'>";
                             echo "</form>";
                         } else {
-                            echo "<span>Registrarse-></span>";
+                            echo "<span style='color:white;'>Registrarse-></span>";
                             echo "<a href='./registrarse.php' style='width: 0px;'><i class='fas fa-sign-in-alt'></i></a>";
                         }
 
@@ -208,20 +247,36 @@ $results    = $Paginacion->get_datos_productos($limit, $page);
                 </div>
                 <div id="formulario_categorias" class="items_Menu_Categorias ">
                     <span>Categorias</span>
-                    <form action="" method="post">
+                    <form action="" id="categorias" name="categorias" method="get">
                         <div id="checks">
-                            <div class="checks_contenido">A-Z<input type="checkbox" name="" id=""></div>
-                            <div class="checks_contenido">&lt;10€<input type="checkbox" name="" id=""></div>
-                            <div class="checks_contenido">&lt;50€<input type="checkbox" name="" id=""></div>
-                            <div class="checks_contenido">&lt;100€<input type="checkbox" name="" id=""></div>
-                            <div class="checks_contenido">hola5<input type="checkbox" name="" id=""></div>
-                            <div class="checks_contenido">hola6<input type="checkbox" name="" id=""></div>
-                            <div class="checks_contenido">hola7<input type="checkbox" name="" id=""></div>
-                            <div class="checks_contenido">hola8<input type="checkbox" name="" id=""></div>
-                            <div class="checks_contenido">hola9<input type="checkbox" name="" id=""></div>
+                            <div class="checks_contenido"><span id="texto_categorias">A-Z</span><input type="checkbox" value="AZ" <?php
+                                                                                                                                    if (in_array("AZ", $categorias))
+                                                                                                                                        echo 'checked';
+
+                                                                                                                                    ?> 
+                            name="categorias[]" id="AZ"></div>
+                            <div class="checks_contenido"><span id="texto_categorias">Z-A</span><input type="checkbox" value="ZA" <?php
+                                                                                                                                    if (in_array("ZA", $categorias))
+                                                                                                                                        echo "checked";
+
+                                                                                                                                    ?> 
+                            name="categorias[]" id="ZA"></div>
+                            <div class="checks_contenido" <span id="texto_categorias">Menor precio</span><input type="checkbox" value="menor" <?php
+                                                                                                                                                if (in_array("menor", $categorias))
+                                                                                                                                                    echo "checked";
+
+                                                                                                                                                ?>
+                             name="categorias[]" id="menor"></div>
+                            <div class="checks_contenido"><span id="texto_categorias">Mayor precio</span><input type="checkbox" <?php
+                                                                                                                                if (in_array("mayor", $categorias))
+                                                                                                                                    echo "checked";
+
+                                                                                                                                ?> 
+                            value="mayor" name="categorias[]" id="mayor"></div>
+
                         </div>
                         <div class="enviar_categorias">
-                            <input type="submit" value="Enviar">
+                            <input type="submit" id="aplicar" value="Aplicar" name="aplicar">
                         </div>
                     </form>
 
@@ -232,12 +287,13 @@ $results    = $Paginacion->get_datos_productos($limit, $page);
                     <div class="container justify-content-center">
                         <form action="" method="GET" class="d-flex">
                             <input class="form-control me-2" type="search" placeholder="Buscar" name="producto_buscar" value="<?php echo $nombre_productos; ?>" aria-label="Search">
-                            <button id="buscar" name="buscar" class="btn" type="submit">Aplicar</button>
+                            <button id="buscar" name="buscar" class="btn" type="submit">Buscar</button>
                         </form>
                     </div>
                 </nav>
 
-                <?php //require("comunes/buscador.php"); ?>
+                <?php //require("comunes/buscador.php"); 
+                ?>
 
                 <div id="productos">
                     <?php
@@ -293,8 +349,8 @@ $results    = $Paginacion->get_datos_productos($limit, $page);
         </div>
     </div>
     <!-- fin main -->
-   <?php
-   
-   require("./comunes/footer.php");
-   
-   ?>
+    <?php
+
+    require("./comunes/footer.php");
+
+    ?>

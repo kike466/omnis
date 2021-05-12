@@ -135,10 +135,13 @@ a {
 
 .checks_contenido {
   display: flex;
-  width: 33%;
-  justify-content: center;
+  width: 50%;
+  justify-content: space-evenly;
   align-items: center;
+  border-bottom: aqua 1px solid;
+
 }
+
 .enviar_categorias {
   display: flex;
   justify-content: center;
@@ -232,6 +235,7 @@ a {
 }
 #paginacion {
   margin-top: 50px;
+  margin-bottom: 50px;
 }
 
 /*footer*/
