@@ -4,7 +4,7 @@ require_once("./clases/pedidos.php");
 require_once("./clases/historial.php");
 require_once("./clases/usuario.php");
 require_once("./clases/factura.php");
-require_once("./clases/conexionLocal.php");
+require_once("./clases/conexion.php");
 
 if (isset($_POST["logout"])) {
     unset($_SESSION["login"]);

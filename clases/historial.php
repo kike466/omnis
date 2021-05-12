@@ -1,6 +1,6 @@
 <?php
 
-require_once("conexionLocal.php");
+require_once("conexion.php");
 
 class historial{
 

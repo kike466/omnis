@@ -1,5 +1,5 @@
 <?php
-require_once("../clases/conexionLocal.php");
+require_once("../clases/conexion.php");
 require_once("../clases/historial.php");
 $conexion = conexion::abrir_conexion();
 
