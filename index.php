@@ -5,7 +5,7 @@ require_once("./clases/historial.php");
 require_once("./clases/usuario.php");
 require_once("./clases/factura.php");
 require_once("./clases/conexion.php");
-
+//cerrar sesion
 if (isset($_POST["logout"])) {
     unset($_SESSION["login"]);
     if (isset($_COOKIE['sesion_iniciada'])) {
@@ -15,7 +15,7 @@ if (isset($_POST["logout"])) {
     header("Location: index.php");
     exit;
 }
-
+//iniciar sesion
 if (isset($_COOKIE['sesion_iniciada'])) {
 
     $email = $_COOKIE['sesion_iniciada'];
@@ -36,7 +36,7 @@ if (isset($_COOKIE['sesion_iniciada'])) {
 
     new usuario($user["id_usuarios"]);
 }
-
+//comprar
 if (isset($_SESSION["login"])) {
 
     if (isset($_POST['comprar'])) {
@@ -76,14 +76,14 @@ if (isset($_SESSION["login"])) {
     }
 }
 
-
+//buscar
 if (isset($_GET['buscar'])) {
     $nombre_productos = $_GET['producto_buscar'];
 } else {
     $nombre_productos = "";
 }
 
-
+//paginacion
 require_once('clases/paginacion.php');
 
 $conn  = conexion::abrir_conexion();

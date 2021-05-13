@@ -81,6 +81,28 @@ class pedidos{
 
     }
 
+    public static function borrar_pedidos($correo)
+    {
+        require_once("usuario.php");
+        $usuario = usuario::datos_usuario($correo);
+        $id_usr = $usuario["id_usuarios"];
+
+
+        $conectar = conexion::abrir_conexion();
+
+        try {
+
+            $conectar->query("Delete from pedidos where id_usuarios = '$id_usr'");
+
+
+        } catch (exception $e) {
+
+            die("Error: " . $e->getMessage());
+        }
+
+        $conectar->close();
+    }
+
    
 }
 

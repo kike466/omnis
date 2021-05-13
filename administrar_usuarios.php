@@ -1,5 +1,6 @@
 <?php
 require("clases/usuario.php");
+require("clases/pedidos.php");
 if (isset($_POST['hacer_admin'])) {
     $correo=$_POST['email'];
     usuario::hacer_admin($correo);
@@ -15,6 +16,7 @@ if (isset($_POST['hacer_usuario'])) {
 }
 if (isset($_POST['borrar'])) {
     $correo=$_POST['email'];
+    pedidos::borrar_pedidos($correo);
     usuario::borrar_usuario($correo);
 }
 

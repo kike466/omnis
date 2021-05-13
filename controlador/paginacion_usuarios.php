@@ -1,6 +1,26 @@
 <?php
 require_once("../clases/conexion.php");
 
+require("../clases/usuario.php");
+if (isset($_POST['hacer_admin'])) {
+    $correo=$_POST['email'];
+    usuario::hacer_admin($correo);
+}
+if (isset($_POST['hacer_trabajador'])) {
+    $correo=$_POST['email'];
+    usuario::hacer_trabajador($correo);
+}
+
+if (isset($_POST['hacer_usuario'])) {
+    $correo=$_POST['email'];
+    usuario::hacer_usuario($correo);
+}
+if (isset($_POST['borrar'])) {
+    $correo=$_POST['email'];
+    echo $correo;
+    usuario::borrar_usuario($correo);
+}
+
 $conexion = conexion::abrir_conexion();
 
 
@@ -31,11 +51,11 @@ while ($fila = mysqli_fetch_array($result)) {
      </section>
 
      <section class="botones">
-        <form action=""method="post" id="form_administrar">
-            <input type="hidden" name=·"email" value="'.$fila['email'].'">
+        <form action="" method="post" id="form_administrar">
+            <input type="hidden" name="email" value="'.$fila['email'].'">
             <div class="hacer_admin"><input type="submit" value="Hacer Administrador" name="hacer_admin"></div>
             <div class="ascender_trabajador"><input type="submit" value="Hacer Trabajador" name="hacer_trabajador"></div>
-            <div class="descender_usuario"><input type="submit" value="Hacer Usuario" name="hacer_a_usuario"></div>
+            <div class="descender_usuario"><input type="submit" value="Hacer Usuario" name="hacer_usuario"></div>
             <div class="borrar_usuario"><input type="submit" value="Borrar Usuario" name="borrar"></div>
         </form>
      </section>

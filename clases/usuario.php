@@ -193,11 +193,14 @@ class usuario
         $usuario = usuario::datos_usuario($correo);
         $id_usr = $usuario["id_usuarios"];
 
+
         $conectar = conexion::abrir_conexion();
 
         try {
 
             $conectar->query("Delete from usuario where id_usuarios = '$id_usr'");
+
+
         } catch (exception $e) {
 
             die("Error: " . $e->getMessage());

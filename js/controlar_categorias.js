@@ -1,9 +1,5 @@
 $(document).ready(function () {
-    if (document.categorias.ZA.checked==false || document.categorias.AZ.checked==false || document.categorias.mayor.checked==false || document.categorias.menor.checked==false) {
-        $("#aplicar").prop("disable",true);
-    }else{
-        $("#aplicar").prop("disable",false);
-    }
+   
   
     $("#AZ").click(function () {
 
@@ -39,9 +35,4 @@ $(document).ready(function () {
   
     });
 
-
-    
-
-  
-  
   });

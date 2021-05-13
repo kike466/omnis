@@ -732,7 +732,9 @@ footer {
     justify-content: center;
   }
   /*perfil,registrar,modi*/
-
+  #registrarse{
+    height: 100%;
+  }
   #email {
     font-size: 1em;
   }
