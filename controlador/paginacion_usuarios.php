@@ -31,7 +31,7 @@ while ($fila = mysqli_fetch_array($result)) {
      </section>
 
      <section class="botones">
-        <form action="'.$_SERVER["PHP_SELF"].'"method="post" id="form_administrar">
+        <form action=""method="post" id="form_administrar">
             <input type="hidden" name=·"email" value="'.$fila['email'].'">
             <div class="hacer_admin"><input type="submit" value="Hacer Administrador" name="hacer_admin"></div>
             <div class="ascender_trabajador"><input type="submit" value="Hacer Trabajador" name="hacer_trabajador"></div>
