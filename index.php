@@ -1,4 +1,5 @@
 <?php
+//Creado por Enrique Martinez Galvañ
 require_once("./clases/productos.php");
 require_once("./clases/pedidos.php");
 require_once("./clases/historial.php");
