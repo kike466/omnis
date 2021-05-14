@@ -36,7 +36,7 @@ $salida = '';
             
         <div class="nom_pun_st">
             <div class="nombre">' . $fila["nombre_producto"] . '  ' . $fila["precio"] . '€</div>
-            <div class="puntuacion">Puntuacion "' . $fila['puntuacion'] . '/5</div>
+            
             <div class="cantidad_comprada">Cantidad comprada: ' . $fila['cantidad'] . ' productos</div>
         </div>
 

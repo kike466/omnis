@@ -1,5 +1,5 @@
 <?php
-
+/*
 class conexion{
 
     private static $host = "eu-cdbr-west-01.cleardb.com";
@@ -22,6 +22,6 @@ class conexion{
         return self::$conexion;
     }
 
-}
+}*/
 
 ?>

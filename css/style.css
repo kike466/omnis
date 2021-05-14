@@ -194,7 +194,7 @@ a {
   justify-content: center;
 }
 .stock {
-  width: 50%;
+  width: 100%;
   display: flex;
   justify-content: center;
 }
@@ -873,7 +873,7 @@ footer {
     height: 40px;
   }
   .cantidad_comprada {
-    width: 50%;
+    width: 100%;
     display: flex;
     justify-content: center;
   }

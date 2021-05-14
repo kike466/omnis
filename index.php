@@ -1,5 +1,4 @@
 <?php
-//Creador Enrique Martinezn Galvañ
 require_once("./clases/productos.php");
 require_once("./clases/pedidos.php");
 require_once("./clases/historial.php");
@@ -306,7 +305,6 @@ $results    = $Paginacion->get_datos_productos($limit, $page);
 
                         echo "<div class='nom_pun_st'>";
                         echo "<div class='nombre'>" . $results[$i]['nombre_producto'] . "  (" . $results[$i]['precio'] . "€)</div>";
-                        echo "<div class='puntuacion'>Puntuacion " . $results[$i]['puntuacion'] . "/5</div>";
                         echo "<div class='stock'>Quedan " . $results[$i]['stock'] . " productos</div>";
                         echo " </div>";
 

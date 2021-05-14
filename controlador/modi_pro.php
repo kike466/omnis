@@ -14,7 +14,7 @@ switch ($_REQUEST["op"]) {
                 "2"=>$datos[$i]['descripcion'],
                 "3"=>$datos[$i]['precio'],
                 "4"=>$datos[$i]['stock'],
-                "5"=>$datos[$i]['puntuacion']
+                "5"=>$datos[$i]['ruta_Foto']
                 
             );
         }

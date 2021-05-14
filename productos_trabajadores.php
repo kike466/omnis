@@ -139,7 +139,7 @@ require("comunes/header.php");
                         <td>descripcion</td>
                         <td>preccio</td>
                         <td>stock</td>
-                        <td>puntuacion</td>
+                        <td>ruta_Foto</td>
 
                     </tr>
                 </thead>
@@ -153,7 +153,7 @@ require("comunes/header.php");
                         <td>descripcion</td>
                         <td>preccio</td>
                         <td>stock</td>
-                        <td>puntuacion</td>
+                        <td>ruta_Foto</td>
 
                     </tr>
                 </tfoot>
